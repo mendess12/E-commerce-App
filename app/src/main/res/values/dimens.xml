@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Margin Size -->
+    <dimen name="margin_0dp">0dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+
+    <!-- Text Size -->
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+
+    <!-- Padding Size -->
+    <dimen name="padding_4dp">4dp</dimen>
+
+    <!-- Width Size -->
+    <dimen name="width_2dp">2dp</dimen>
+    <dimen name="width_24dp">24dp</dimen>
+    <dimen name="width_40dp">40dp</dimen>
+    <dimen name="width_150dp">150dp</dimen>
+
+    <!-- Height Size -->
+    <dimen name="height_24dp">24dp</dimen>
+    <dimen name="height_40dp">40dp</dimen>
+    <dimen name="height_150dp">150dp</dimen>
+
+    <!-- Radius Size -->
+    <dimen name="radius_8dp">8dp</dimen>
+
+</resources>

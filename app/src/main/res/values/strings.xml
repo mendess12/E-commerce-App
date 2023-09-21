@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SistersLabGraduationProject</string>
+    <string name="title">GIGABYTE AORUS 15P KD</string>
+    <string name="price">58.316₺</string>
+    <string name="description">i7-12700H\n32GB DDR4\nRTX3070Ti GDDR6 8GB\n1TB SSD\n17.3\" FHD 144Hz</string>
+    <string name="rate">4.2</string>
+    <string name="category">Notebook</string>
+    <string name="search">Ara...</string>
 </resources>
