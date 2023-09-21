@@ -23,8 +23,10 @@
     <dimen name="height_24dp">24dp</dimen>
     <dimen name="height_40dp">40dp</dimen>
     <dimen name="height_150dp">150dp</dimen>
+    <dimen name="height_300dp">300dp</dimen>
 
     <!-- Radius Size -->
     <dimen name="radius_8dp">8dp</dimen>
+    <dimen name="radius_16dp">16dp</dimen>
 
 </resources>

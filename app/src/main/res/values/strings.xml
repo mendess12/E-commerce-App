@@ -7,4 +7,6 @@
     <string name="category">Notebook</string>
     <string name="search">Ara...</string>
     <string name="add_bag">Add To Bag</string>
+    <string name="home">Home</string>
+    <string name="bag">Bag</string>
 </resources>
