@@ -23,5 +23,10 @@
         android:id="@+id/detailFragment"
         android:name="com.yusufmendes.sisterslabgraduationproject.view.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+
+        <argument
+            android:name="product"
+            app:argType="com.yusufmendes.sisterslabgraduationproject.model.ProductX" />
+    </fragment>
 </navigation>
