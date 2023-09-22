@@ -8,4 +8,6 @@ import javax.inject.Inject
 class ProductRepository @Inject constructor(private val productAPI: ProductAPI) {
 
     suspend fun getProducts(): Response<Product> = productAPI.getProductData()
+
+    suspend fun getBagProducts(): Response<Product> = productAPI.getBagProductsData()
 }
