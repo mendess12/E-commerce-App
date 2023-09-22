@@ -1,5 +1,6 @@
 package com.yusufmendes.sisterslabgraduationproject.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -43,6 +44,7 @@ class ProductAdapter(
     fun updateProductList(updateProductList: List<ProductX>) {
         productList.clear()
         productList.addAll(updateProductList)
-        notifyItemChanged(0, updateProductList.size)
+        Log.e("update", productList.toString())
+        notifyDataSetChanged()
     }
 }
