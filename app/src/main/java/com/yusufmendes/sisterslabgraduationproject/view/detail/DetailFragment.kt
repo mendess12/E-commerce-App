@@ -5,15 +5,18 @@ import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.snackbar.Snackbar
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.adapter.ViewPagerAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentDetailBinding
+import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -21,6 +24,7 @@ import kotlin.math.abs
 class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private lateinit var binding: FragmentDetailBinding
+    private val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var viewPager2: ViewPager2
@@ -43,6 +47,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             findNavController().popBackStack()
         }
 
+        binding.detailScreenAddToBagButton.setOnClickListener {
+            viewModel.addToBag(AddToCardRequest("b3sa6dj721312ssadas21d", cart.id))
+            observeLiveData()
+        }
+
         init()
         setUpTransformer()
 
@@ -52,6 +61,16 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 handler.removeCallbacks(runnable)
             }
         })
+    }
+
+    private fun observeLiveData() {
+        viewModel.addBagLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                findNavController().popBackStack()
+            } else {
+                Snackbar.make(requireView(), "Sepete eklenmedi!", Snackbar.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private val runnable = Runnable {
