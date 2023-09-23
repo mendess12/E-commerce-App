@@ -3,6 +3,7 @@ package com.yusufmendes.sisterslabgraduationproject.view.home
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,6 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         productAdapter = ProductAdapter(::navigateToDetail)
         binding.homeRv.adapter = productAdapter
+        search()
         observeLiveData()
     }
 
@@ -45,5 +47,26 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 Snackbar.make(requireView(), "Liste boş", Snackbar.LENGTH_SHORT).show()
             }
         }
+        viewModel.searchProductLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                productAdapter.updateProductList(it)
+            } else {
+                Snackbar.make(requireView(), "Arama başarısız", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun search() {
+        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                viewModel.searchProduct(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                viewModel.searchProduct(newText)
+                return true
+            }
+        })
     }
 }

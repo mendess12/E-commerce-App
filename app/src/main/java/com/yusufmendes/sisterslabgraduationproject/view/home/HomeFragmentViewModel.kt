@@ -17,6 +17,7 @@ class HomeFragmentViewModel @Inject constructor(
     ViewModel() {
 
     val productLiveData = MutableLiveData<List<ProductX>?>()
+    val searchProductLiveData = MutableLiveData<List<ProductX>?>()
 
     init {
         getProducts()
@@ -36,6 +37,24 @@ class HomeFragmentViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.e("catch içi", "sdasda")
                 productLiveData.postValue(null)
+            }
+        }
+    }
+
+    fun searchProduct(query:String) {
+        viewModelScope.launch {
+            try {
+                val response = productRepository.searchProduct(query)
+                if (response.isSuccessful) {
+                    Log.e("if içi", response.body()?.products.toString())
+                    searchProductLiveData.postValue(response.body()?.products)
+                } else {
+                    Log.e("else içi", response.message())
+                    searchProductLiveData.postValue(null)
+                }
+            } catch (e: Exception) {
+                Log.e("catch içi", "sdasda")
+                searchProductLiveData.postValue(null)
             }
         }
     }

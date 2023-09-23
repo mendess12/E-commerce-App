@@ -7,15 +7,32 @@
     android:background="@color/screen_background"
     tools:context=".view.home.HomeFragment">
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        style="@style/detail"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_margin="@dimen/margin_8dp"
+        android:background="@drawable/product_background"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="@string/search"
+        app:radius="10dp"
+        app:searchIcon="@drawable/baseline_search_24">
+
+    </androidx.appcompat.widget.SearchView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRv"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/margin_0dp"
         android:layout_height="@dimen/margin_0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
         tools:listitem="@layout/product_item" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
