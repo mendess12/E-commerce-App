@@ -2,8 +2,10 @@ package com.yusufmendes.sisterslabgraduationproject.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.databinding.ProductItemBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.util.downloadFromUrl
@@ -20,8 +22,18 @@ class ProductAdapter(
         fun bind(product: ProductX) {
             with(binding) {
                 productItemTitleTv.text = product.title
-                productItemPriceTv.text = product.price.toString()
+                productItemPriceTv.text =
+                    binding.root.context.getString(R.string.price, product.price.toString())
                 productItemIv.downloadFromUrl(product.imageOne)
+                if (product.saleState) {
+                    productItemSalePriceTv.visibility = View.VISIBLE
+                    productItemSalePriceTv.text =
+                        binding.root.context.getString(
+                            R.string.price,
+                            product.salePrice.toString()
+                        )
+                    productItemPriceTv.setBackgroundResource(R.drawable.discount_line)
+                }
                 itemView.setOnClickListener {
                     onClick.invoke(product)
                 }

@@ -40,7 +40,17 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             detailScreenTitleTv.text = cart.title
             detailScreenDescriptionTv.text = cart.description
             detailScreenRateTv.text = cart.rate.toString()
-            detailScreenPriceTv.text = cart.price.toString()
+            detailScreenPriceTv.text =
+                binding.root.context.getString(R.string.price, cart.price.toString())
+            if (cart.saleState) {
+                detailScreenSalePriceTv.visibility = View.VISIBLE
+                detailScreenSalePriceTv.text =
+                    binding.root.context.getString(
+                        R.string.price,
+                        cart.salePrice.toString()
+                    )
+                detailScreenPriceTv.setBackgroundResource(R.drawable.discount_line)
+            }
         }
 
         binding.detailScreenToolbar.backToolBar.setOnClickListener {

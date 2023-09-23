@@ -59,11 +59,15 @@
         <TextView
             android:id="@+id/detailScreenDescriptionTv"
             style="@style/detail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8dp"
             android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_16dp"
             android:text="@string/description"
+            app:layout_constraintBottom_toTopOf="@+id/detailScreenAddToBagButton"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailScreenRateTv" />
 
@@ -73,15 +77,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8dp"
-            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_8dp"
             android:text="@string/price"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/detailScreenSalePriceTv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailScreenDescriptionTv" />
 
+        <TextView
+            android:id="@+id/detailScreenSalePriceTv"
+            style="@style/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:text="@string/price"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detailScreenPriceTv" />
+
         <Button
             android:id="@+id/detailScreenAddToBagButton"
-            style="@style/head"
+            style="@style/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_16dp"

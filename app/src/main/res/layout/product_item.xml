@@ -22,7 +22,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productItemTitleTv"
-        style="@style/head"
+        style="@style/detail"
         android:layout_width="@dimen/margin_0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16dp"
@@ -38,18 +38,32 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productItemPriceTv"
-        style="@style/detail"
-        android:layout_width="@dimen/margin_0dp"
+        style="@style/price"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:gravity="center"
-        android:text="@string/title"
+        android:text="@string/price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/productItemSalePriceTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productItemTitleTv"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/productItemSalePriceTv"
+        style="@style/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:gravity="center"
+        android:text="@string/price"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/productItemPriceTv"
         app:layout_constraintTop_toBottomOf="@+id/productItemTitleTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
