@@ -15,11 +15,7 @@ class BagViewModel @Inject constructor(private val productRepository: ProductRep
 
     var bagLiveData = MutableLiveData<List<ProductX>?> ()
 
-    init {
-        getBagProducts()
-    }
-
-    private fun getBagProducts(){
+    fun getBagProducts(){
         viewModelScope.launch {
             try {
                 val response = productRepository.getBagProducts()

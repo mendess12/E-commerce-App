@@ -25,6 +25,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         binding.bagRv.layoutManager = LinearLayoutManager(requireContext())
         bagProductAdapter = BagProductAdapter()
         binding.bagRv.adapter = bagProductAdapter
+        viewModel.getBagProducts()
         observeLiveData()
     }
 
