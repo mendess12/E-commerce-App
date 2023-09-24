@@ -33,6 +33,9 @@ class ProductAdapter(
                             product.salePrice.toString()
                         )
                     productItemPriceTv.setBackgroundResource(R.drawable.discount_line)
+                } else {
+                    productItemSalePriceTv.visibility = View.GONE
+                    productItemPriceTv.background = null
                 }
                 itemView.setOnClickListener {
                     onClick.invoke(product)

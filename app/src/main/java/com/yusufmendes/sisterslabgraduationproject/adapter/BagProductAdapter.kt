@@ -9,7 +9,8 @@ import com.yusufmendes.sisterslabgraduationproject.databinding.BagItemBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.util.downloadFromUrl
 
-class BagProductAdapter(private val onClick : (Int) -> Unit) : RecyclerView.Adapter<BagProductAdapter.BagViewHolder>() {
+class BagProductAdapter(private val onClick: (Int) -> Unit) :
+    RecyclerView.Adapter<BagProductAdapter.BagViewHolder>() {
 
     private val bagProductList = ArrayList<ProductX>()
 
@@ -30,6 +31,9 @@ class BagProductAdapter(private val onClick : (Int) -> Unit) : RecyclerView.Adap
                             bagProduct.salePrice.toString()
                         )
                     bagItemPriceTv.setBackgroundResource(R.drawable.discount_line)
+                } else {
+                    bagItemSalePriceTv.visibility = View.GONE
+                    bagItemPriceTv.background = null
                 }
                 bagItemDeleteIv.setOnClickListener {
                     onClick.invoke(bagProduct.id)
