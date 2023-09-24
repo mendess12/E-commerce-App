@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -32,12 +33,12 @@ class BagViewModel @Inject constructor(private val productRepository: ProductRep
         }
     }
 
-    fun deleteProduct(id: Int) {
+    fun deleteProduct(deleteCartRequest: DeleteCartRequest) {
         viewModelScope.launch {
             try {
-                val response = productRepository.deleteToProductFromBag(id)
+                val response = productRepository.deleteToProductFromBag(deleteCartRequest)
                 if (response.isSuccessful) {
-                    removeItemFromVisibleList(id)
+                    removeItemFromVisibleList(deleteCartRequest.id)
                     deleteLiveData.postValue(response.body())
                 } else {
                     deleteLiveData.postValue(null)
@@ -48,8 +49,8 @@ class BagViewModel @Inject constructor(private val productRepository: ProductRep
         }
     }
 
-    private fun removeItemFromVisibleList(deletedItemId: Int){
-        val productList = bagLiveData.value?: return
+    private fun removeItemFromVisibleList(deletedItemId: Int) {
+        val productList = bagLiveData.value ?: return
         val newProductList = productList.filter { it.id != deletedItemId }
         bagLiveData.postValue(newProductList)
     }

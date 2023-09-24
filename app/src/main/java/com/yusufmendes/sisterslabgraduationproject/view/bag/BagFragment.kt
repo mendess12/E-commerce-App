@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.adapter.BagProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentBagBinding
+import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +25,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         binding.bagRv.setHasFixedSize(true)
         binding.bagRv.layoutManager = LinearLayoutManager(requireContext())
         bagProductAdapter = BagProductAdapter {
-            viewModel.deleteProduct(it)
+            viewModel.deleteProduct(DeleteCartRequest(it))
         }
         binding.bagRv.adapter = bagProductAdapter
         viewModel.getBagProducts()
