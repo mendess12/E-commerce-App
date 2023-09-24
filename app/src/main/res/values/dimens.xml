@@ -5,6 +5,7 @@
     <dimen name="margin_0dp">0dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
 
     <!-- Text Size -->
     <dimen name="text_size_14sp">14sp</dimen>
@@ -17,14 +18,19 @@
     <!-- Width Size -->
     <dimen name="width_2dp">2dp</dimen>
     <dimen name="width_24dp">24dp</dimen>
+    <dimen name="width_32dp">32dp</dimen>
     <dimen name="width_40dp">40dp</dimen>
+    <dimen name="width_125dp">125dp</dimen>
     <dimen name="width_150dp">150dp</dimen>
 
     <!-- Height Size -->
     <dimen name="height_24dp">24dp</dimen>
+    <dimen name="height_32dp">32dp</dimen>
     <dimen name="height_40dp">40dp</dimen>
+    <dimen name="height_52dp">52dp</dimen>
+    <dimen name="height_125dp">125dp</dimen>
     <dimen name="height_150dp">150dp</dimen>
-    <dimen name="height_300dp">300dp</dimen>
+    <dimen name="height_240dp">240dp</dimen>
 
     <!-- Radius Size -->
     <dimen name="radius_8dp">8dp</dimen>

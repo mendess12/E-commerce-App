@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bagItemIv"
-        android:layout_width="125dp"
-        android:layout_height="125dp"
+        android:layout_width="@dimen/width_125dp"
+        android:layout_height="@dimen/height_125dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,8 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/bagItemDeleteIv"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="@dimen/width_32dp"
+        android:layout_height="@dimen/height_32dp"
         android:layout_marginEnd="@dimen/margin_8dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:scaleType="centerCrop"
@@ -34,9 +34,8 @@
         android:layout_width="@dimen/margin_0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_8dp"
-        android:gravity="center"
         android:text="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bagItemIv"
@@ -67,6 +66,5 @@
         app:layout_constraintStart_toEndOf="@+id/bagItemPriceTv"
         app:layout_constraintTop_toBottomOf="@+id/bagItemTitleTv"
         tools:text="" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

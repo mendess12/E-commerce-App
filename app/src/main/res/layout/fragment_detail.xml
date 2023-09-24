@@ -16,8 +16,8 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/detailScreenViewPager2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_300dp"
+        android:layout_width="@dimen/margin_0dp"
+        android:layout_height="@dimen/height_240dp"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,13 +35,13 @@
         app:layout_constraintTop_toBottomOf="@+id/detailScreenViewPager2">
 
         <TextView
-            android:id="@+id/detailScreenTitleTv"
+            android:id="@+id/detailScreenCategoryTv"
             style="@style/head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/title"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:text="@string/category"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,64 +50,64 @@
             style="@style/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
-            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
             android:text="@string/rate"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailScreenTitleTv" />
+            app:drawableLeftCompat="@drawable/baseline_star_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/detailScreenDescriptionTv"
             style="@style/detail"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/margin_0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_8dp"
             android:layout_marginTop="@dimen/margin_8dp"
             android:layout_marginEnd="@dimen/margin_8dp"
-            android:layout_marginBottom="@dimen/margin_16dp"
             android:text="@string/description"
-            app:layout_constraintBottom_toTopOf="@+id/detailScreenAddToBagButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailScreenRateTv" />
+            app:layout_constraintTop_toBottomOf="@+id/detailScreenCategoryTv" />
 
         <TextView
             android:id="@+id/detailScreenPriceTv"
             style="@style/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
-            android:layout_marginTop="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_32dp"
             android:text="@string/price"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/detailScreenSalePriceTv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailScreenDescriptionTv" />
+            app:layout_constraintBottom_toTopOf="@+id/detailScreenAddToBagButton"
+            app:layout_constraintEnd_toStartOf="@+id/detailScreenSalePriceTv"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/detailScreenSalePriceTv"
             style="@style/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_marginBottom="@dimen/margin_32dp"
             android:text="@string/price"
             android:textStyle="bold"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/detailScreenPriceTv" />
+            app:layout_constraintBottom_toTopOf="@+id/detailScreenAddToBagButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/detailScreenPriceTv" />
 
         <Button
             android:id="@+id/detailScreenAddToBagButton"
             style="@style/detail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_16dp"
+            android:layout_marginStart="@dimen/margin_32dp"
+            android:layout_marginEnd="@dimen/margin_32dp"
             android:layout_marginBottom="@dimen/margin_16dp"
             android:text="@string/add_bag"
             app:cornerRadius="@dimen/radius_8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

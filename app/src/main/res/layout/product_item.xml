@@ -29,7 +29,6 @@
         android:layout_marginTop="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_8dp"
-        android:gravity="center"
         android:text="@string/title"
         app:layout_constraintBottom_toTopOf="@+id/productItemPriceTv"
         app:layout_constraintEnd_toEndOf="parent"

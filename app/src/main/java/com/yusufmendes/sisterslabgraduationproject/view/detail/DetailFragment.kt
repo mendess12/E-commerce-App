@@ -37,9 +37,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         val cart = args.product
         with(binding) {
-            detailScreenTitleTv.text = cart.title
+            detailScreenCategoryTv.text = cart.category
             detailScreenDescriptionTv.text = cart.description
             detailScreenRateTv.text = cart.rate.toString()
+            detailScreenToolbar.toolbarTitle.text = cart.title
             detailScreenPriceTv.text =
                 binding.root.context.getString(R.string.price, cart.price.toString())
             if (cart.saleState) {

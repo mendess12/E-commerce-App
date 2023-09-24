@@ -4,9 +4,10 @@
     <string name="description">i7-12700H\n32GB DDR4\nRTX3070Ti GDDR6 8GB\n1TB SSD\n17.3\" FHD 144Hz</string>
     <string name="rate">4.2</string>
     <string name="category">Notebook</string>
-    <string name="search">Ara...</string>
+    <string name="search">Search...</string>
     <string name="add_bag">Add To Bag</string>
     <string name="home">Home</string>
     <string name="bag">Bag</string>
     <string name="price">%s ₺</string>
+    <string name="your_cart">Your Cart</string>
 </resources>

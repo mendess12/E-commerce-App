@@ -5,4 +5,5 @@
     <color name="screen_background">#E0EEF7</color>
     <color name="item_background">#F7FEFE</color>
     <color name="text_color">#333E53</color>
+    <color name="star_background">#FFEB3B</color>
 </resources>
