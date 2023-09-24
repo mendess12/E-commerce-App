@@ -2,6 +2,7 @@ package com.yusufmendes.sisterslabgraduationproject.services
 
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import retrofit2.Response
 import retrofit2.http.Body
@@ -25,5 +26,10 @@ interface ProductAPI {
     @POST("add_to_cart.php")
     suspend fun addToBag(
         @Body addToCardRequest: AddToCardRequest
+    ): Response<CRUD>
+
+    @POST("delete_from_cart.php")
+    suspend fun deleteProductFromBag(
+        @Body deleteCartRequest: DeleteCartRequest
     ): Response<CRUD>
 }

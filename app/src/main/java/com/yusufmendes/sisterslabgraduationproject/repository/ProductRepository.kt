@@ -2,6 +2,7 @@ package com.yusufmendes.sisterslabgraduationproject.repository
 
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.services.ProductAPI
 import retrofit2.Response
@@ -17,6 +18,8 @@ class ProductRepository @Inject constructor(private val productAPI: ProductAPI) 
 
     suspend fun addToBag(addToCardRequest: AddToCardRequest): Response<CRUD> =
         productAPI.addToBag(addToCardRequest)
+
+    suspend fun deleteToProductFromBag(deleteCartRequest: DeleteCartRequest) : Response<CRUD> = productAPI.deleteProductFromBag(deleteCartRequest)
 
 
 }

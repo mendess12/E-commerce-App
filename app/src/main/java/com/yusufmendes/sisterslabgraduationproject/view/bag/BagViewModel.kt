@@ -3,6 +3,8 @@ package com.yusufmendes.sisterslabgraduationproject.view.bag
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.repository.ProductRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,9 +15,10 @@ import javax.inject.Inject
 class BagViewModel @Inject constructor(private val productRepository: ProductRepository) :
     ViewModel() {
 
-    var bagLiveData = MutableLiveData<List<ProductX>?> ()
+    var bagLiveData = MutableLiveData<List<ProductX>?>()
+    val deleteLiveData = MutableLiveData<CRUD?>()
 
-    fun getBagProducts(){
+    fun getBagProducts() {
         viewModelScope.launch {
             try {
                 val response = productRepository.getBagProducts()
@@ -26,6 +29,21 @@ class BagViewModel @Inject constructor(private val productRepository: ProductRep
                 }
             } catch (e: Exception) {
                 bagLiveData.postValue(null)
+            }
+        }
+    }
+
+    fun deleteProduct(deleteCartRequest: DeleteCartRequest) {
+        viewModelScope.launch {
+            try {
+                val response = productRepository.deleteToProductFromBag(deleteCartRequest)
+                if (response.isSuccessful) {
+                    deleteLiveData.postValue(response.body())
+                } else {
+                    deleteLiveData.postValue(null)
+                }
+            } catch (e: Exception) {
+                deleteLiveData.postValue(null)
             }
         }
     }
