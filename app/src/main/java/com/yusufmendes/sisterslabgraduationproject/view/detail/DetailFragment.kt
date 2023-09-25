@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.snackbar.Snackbar
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.adapter.ViewPagerAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentDetailBinding
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
+import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -79,7 +79,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             if (it != null) {
                 findNavController().popBackStack()
             } else {
-                Snackbar.make(requireView(), "Sepete eklenmedi!", Snackbar.LENGTH_SHORT).show()
+                view?.showSnackbar("Sepete ekleme başarısız")
             }
         }
     }
@@ -108,12 +108,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         imageList.add(args.product.imageTwo)
         viewPagerAdapter = ViewPagerAdapter(imageList, viewPager2)
 
-
         viewPager2.adapter = viewPagerAdapter
         viewPager2.offscreenPageLimit = 3
         viewPager2.clipToPadding = false
         viewPager2.clipChildren = false
         viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-
     }
 }

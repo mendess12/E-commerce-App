@@ -10,6 +10,7 @@ import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.adapter.BagProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentBagBinding
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
+import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,14 +38,15 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
             if (it != null) {
                 bagProductAdapter.updateProductList(it)
             } else {
-                Snackbar.make(requireView(), "Liste boş", Snackbar.LENGTH_SHORT).show()
+                view?.showSnackbar("Sepet boş")
             }
         }
         viewModel.deleteLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
-                Snackbar.make(requireView(), "Ürün Silindi!", Snackbar.LENGTH_SHORT).show()
+                view?.showSnackbar("Ürün silindi")
+                Snackbar.make(requireView(), "", Snackbar.LENGTH_SHORT).show()
             } else {
-                Snackbar.make(requireView(), "Ürün silinemedi.", Snackbar.LENGTH_SHORT).show()
+                view?.showSnackbar("Ürün silinemedi")
             }
         }
     }

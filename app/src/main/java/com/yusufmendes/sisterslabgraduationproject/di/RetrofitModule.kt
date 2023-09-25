@@ -1,8 +1,8 @@
 package com.yusufmendes.sisterslabgraduationproject.di
 
 import com.yusufmendes.sisterslabgraduationproject.services.ProductAPI
-import com.yusufmendes.sisterslabgraduationproject.util.Constants.BASE_URL
-import com.yusufmendes.sisterslabgraduationproject.util.Constants.STORE
+import com.yusufmendes.sisterslabgraduationproject.util.constants.Constants.BASE_URL
+import com.yusufmendes.sisterslabgraduationproject.util.constants.Constants.STORE
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

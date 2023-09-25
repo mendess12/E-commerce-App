@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.util
+package com.yusufmendes.sisterslabgraduationproject.util.constants
 
 object Constants {
 

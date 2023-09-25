@@ -7,11 +7,11 @@ import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.adapter.ProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentHomeBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
+import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,14 +44,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             if (it != null) {
                 productAdapter.updateProductList(it)
             } else {
-                Snackbar.make(requireView(), "Liste boş", Snackbar.LENGTH_SHORT).show()
+                view?.showSnackbar("Ürün listesi boş")
             }
         }
         viewModel.searchProductLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
                 productAdapter.updateProductList(it)
             } else {
-                Snackbar.make(requireView(), "Arama başarısız", Snackbar.LENGTH_SHORT).show()
+                view?.showSnackbar("Arama başarısız")
             }
         }
     }
