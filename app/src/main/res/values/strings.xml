@@ -10,4 +10,10 @@
     <string name="bag">Bag</string>
     <string name="price">%s ₺</string>
     <string name="your_cart">Your Cart</string>
+    <string name="all">All</string>
+    <string name="notebook">Notebook</string>
+    <string name="monitor">Monitor</string>
+    <string name="console">Console</string>
+    <string name="desktop">Desktop</string>
+    <string name="headset">Headset</string>
 </resources>
