@@ -1,10 +1,9 @@
 package com.yusufmendes.sisterslabgraduationproject.view.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetProductUseCase
+import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductParams
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
@@ -31,14 +30,11 @@ class HomeFragmentViewModel @Inject constructor(
             try {
                 val response = getProductUseCase(Unit)
                 if (response.isSuccessful) {
-                    Log.e("if içi", response.body()?.products.toString())
                     productLiveData.postValue(response.body()?.products)
                 } else {
-                    Log.e("else içi", response.message())
                     productLiveData.postValue(null)
                 }
             } catch (e: Exception) {
-                Log.e("catch içi", "sdasda")
                 productLiveData.postValue(null)
             }
         }
@@ -49,14 +45,11 @@ class HomeFragmentViewModel @Inject constructor(
             try {
                 val response = searchProductUseCase(SearchProductParams(query))
                 if (response.isSuccessful) {
-                    Log.e("if içi", response.body()?.products.toString())
                     searchProductLiveData.postValue(response.body()?.products)
                 } else {
-                    Log.e("else içi", response.message())
                     searchProductLiveData.postValue(null)
                 }
             } catch (e: Exception) {
-                Log.e("catch içi", "sdasda")
                 searchProductLiveData.postValue(null)
             }
         }
