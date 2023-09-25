@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.DeleteToProductFromBagUseCase
-import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetProductUseCase
+import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BagViewModel @Inject constructor(
-    private val getProductUseCase: GetProductUseCase,
+    private val getBagProductUseCase: GetBagProductUseCase,
     private val deleteToProductFromBagUseCase: DeleteToProductFromBagUseCase
 ) :
     ViewModel() {
@@ -25,7 +25,7 @@ class BagViewModel @Inject constructor(
     fun getBagProducts() {
         viewModelScope.launch {
             try {
-                val response = getProductUseCase(Unit)
+                val response = getBagProductUseCase(Unit)
                 if (response.isSuccessful) {
                     bagLiveData.postValue(response.body()?.products)
                 } else {

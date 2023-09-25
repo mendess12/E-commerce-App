@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.adapter.BagProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentBagBinding
@@ -44,7 +43,6 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         viewModel.deleteLiveData.observe(viewLifecycleOwner) {
             if (it != null) {
                 view?.showSnackbar("Ürün silindi")
-                Snackbar.make(requireView(), "", Snackbar.LENGTH_SHORT).show()
             } else {
                 view?.showSnackbar("Ürün silinemedi")
             }
