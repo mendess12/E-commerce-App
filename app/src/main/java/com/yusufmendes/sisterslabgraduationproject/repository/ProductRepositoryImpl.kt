@@ -3,7 +3,6 @@ package com.yusufmendes.sisterslabgraduationproject.repository
 import com.yusufmendes.sisterslabgraduationproject.domain.repos.ProductRepository
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
-import com.yusufmendes.sisterslabgraduationproject.model.ClearBagRequest
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.services.ProductAPI
@@ -23,10 +22,6 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
     override suspend fun addToBag(addToCardRequest: AddToCardRequest): Response<CRUD> =
         productAPI.addToBag(addToCardRequest)
 
-    override suspend fun deleteToProductFromBag(deleteCartRequest: DeleteCartRequest): Response<CRUD> =
-        productAPI.deleteProductFromBag(deleteCartRequest)
-
-    override suspend fun clearBagRequest(clearBagRequest: ClearBagRequest): Response<CRUD> =
-        productAPI.clearBag(clearBagRequest)
-
+    override suspend fun deleteToProductFromBag(itemId: Int): Response<CRUD> =
+        productAPI.deleteProductFromBag(DeleteCartRequest(itemId))
 }

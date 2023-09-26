@@ -7,8 +7,6 @@ import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.ClearBagU
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.DeleteToProductFromBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
-import com.yusufmendes.sisterslabgraduationproject.model.ClearBagRequest
-import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,7 +22,7 @@ class BagViewModel @Inject constructor(
 
     var bagLiveData = MutableLiveData<List<ProductX>?>()
     val deleteLiveData = MutableLiveData<CRUD?>()
-    var clearBagLiveData = MutableLiveData<CRUD?>()
+    var clearBagLiveData = MutableLiveData<Boolean>()
 
     fun getBagProducts() {
         viewModelScope.launch {
@@ -41,12 +39,12 @@ class BagViewModel @Inject constructor(
         }
     }
 
-    fun deleteProduct(deleteCartRequest: DeleteCartRequest) {
+    fun deleteProduct(itemId: Int) {
         viewModelScope.launch {
             try {
-                val response = deleteToProductFromBagUseCase(deleteCartRequest)
+                val response = deleteToProductFromBagUseCase(itemId)
                 if (response.isSuccessful) {
-                    removeItemFromVisibleList(deleteCartRequest.id)
+                    removeItemFromVisibleList(itemId)
                     deleteLiveData.postValue(response.body())
                 } else {
                     deleteLiveData.postValue(null)
@@ -57,18 +55,19 @@ class BagViewModel @Inject constructor(
         }
     }
 
-    fun clearBag(clearBagRequest: ClearBagRequest) {
+    fun clearBag() {
+        val itemsInCart = bagLiveData.value ?: return
         viewModelScope.launch {
             try {
-                val response = clearBagUseCase(clearBagRequest)
-                if (response.isSuccessful) {
+                val response = clearBagUseCase(itemsInCart)
+                if (response) {
                     getBagProducts()
-                    clearBagLiveData.postValue(response.body())
+                    clearBagLiveData.postValue(response)
                 } else {
-                    clearBagLiveData.postValue(null)
+                    clearBagLiveData.postValue(false)
                 }
             } catch (e: Exception) {
-                clearBagLiveData.postValue(null)
+                clearBagLiveData.postValue(false)
             }
         }
     }

@@ -1,17 +1,24 @@
 package com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag
 
 import com.yusufmendes.sisterslabgraduationproject.domain.SuspendUseCase
-import com.yusufmendes.sisterslabgraduationproject.domain.repos.ProductRepository
-import com.yusufmendes.sisterslabgraduationproject.model.CRUD
-import com.yusufmendes.sisterslabgraduationproject.model.ClearBagRequest
-import retrofit2.Response
+import com.yusufmendes.sisterslabgraduationproject.model.ProductX
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 class ClearBagUseCase @Inject constructor(
-    private val productRepository: ProductRepository
+    private val deleteToProductFromBagUseCase: DeleteToProductFromBagUseCase
 ) :
-    SuspendUseCase<ClearBagRequest, Response<CRUD>>() {
-    override suspend fun execute(params: ClearBagRequest): Response<CRUD> {
-        return productRepository.clearBagRequest(params)
+    SuspendUseCase<List<ProductX>, Boolean>() {
+    override suspend fun execute(items: List<ProductX>): Boolean {
+        supervisorScope {
+            val results = items.map {
+                async {
+                    deleteToProductFromBagUseCase.invoke(it.id)
+                }
+            }.awaitAll()
+        }
+        return true
     }
 }

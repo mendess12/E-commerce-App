@@ -2,7 +2,6 @@ package com.yusufmendes.sisterslabgraduationproject.services
 
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
-import com.yusufmendes.sisterslabgraduationproject.model.ClearBagRequest
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import retrofit2.Response
@@ -32,10 +31,5 @@ interface ProductAPI {
     @POST("delete_from_cart.php")
     suspend fun deleteProductFromBag(
         @Body deleteCartRequest: DeleteCartRequest
-    ): Response<CRUD>
-
-    @POST("ecommerce/clear_cart.php")
-    suspend fun clearBag(
-        @Body clearBagRequest: ClearBagRequest
     ): Response<CRUD>
 }
