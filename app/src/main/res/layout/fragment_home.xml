@@ -15,15 +15,15 @@
         android:layout_margin="@dimen/margin_8dp"
         android:background="@drawable/product_background"
         app:iconifiedByDefault="false"
-        app:layout_constraintBottom_toTopOf="@+id/homeConstraint"
+        app:layout_constraintBottom_toTopOf="@+id/homeTableLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="@string/search"
         app:searchIcon="@drawable/baseline_search_24" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/homeConstraint"
+    <TableLayout
+        android:id="@+id/homeTableLayout"
         android:layout_width="@dimen/margin_0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_8dp"
@@ -32,86 +32,91 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeAllTv"
-            style="@style/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
-            android:background="@drawable/category_background"
-            android:gravity="center"
-            android:text="@string/all"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/homeNotebookTv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeNotebookTv"
-            style="@style/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@string/notebook"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/homeMonitorTv"
-            app:layout_constraintStart_toEndOf="@+id/homeAllTv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeAllTv"
+                style="@style/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:background="@drawable/category_background"
+                android:gravity="center"
+                android:text="@string/all"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/homeNotebookTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeMonitorTv"
-            style="@style/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@string/monitor"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/homeConsoleTv"
-            app:layout_constraintStart_toEndOf="@+id/homeNotebookTv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeNotebookTv"
+                style="@style/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@string/notebook"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/homeMonitorTv"
+                app:layout_constraintStart_toEndOf="@+id/homeAllTv"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeConsoleTv"
-            style="@style/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@string/console"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/homeDesktopTv"
-            app:layout_constraintStart_toEndOf="@+id/homeMonitorTv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeMonitorTv"
+                style="@style/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@string/monitor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/homeConsoleTv"
+                app:layout_constraintStart_toEndOf="@+id/homeNotebookTv"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeDesktopTv"
-            style="@style/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@string/desktop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/homeHeadsetTv"
-            app:layout_constraintStart_toEndOf="@+id/homeConsoleTv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeConsoleTv"
+                style="@style/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@string/console"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/homeDesktopTv"
+                app:layout_constraintStart_toEndOf="@+id/homeMonitorTv"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/homeHeadsetTv"
-            style="@style/category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
-            android:gravity="center"
-            android:text="@string/headset"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/homeDesktopTv"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeDesktopTv"
+                style="@style/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@string/desktop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/homeHeadsetTv"
+                app:layout_constraintStart_toEndOf="@+id/homeConsoleTv"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/homeHeadsetTv"
+                style="@style/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_8dp"
+                android:gravity="center"
+                android:text="@string/headset"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/homeDesktopTv"
+                app:layout_constraintTop_toTopOf="parent" />
+        </TableRow>
+
+    </TableLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRv"
@@ -120,7 +125,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeConstraint"
+        app:layout_constraintTop_toBottomOf="@+id/homeTableLayout"
         tools:listitem="@layout/product_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
