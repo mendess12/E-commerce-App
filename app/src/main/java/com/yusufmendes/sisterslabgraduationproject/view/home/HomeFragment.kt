@@ -30,6 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         productAdapter = ProductAdapter(::navigateToDetail)
         binding.homeRv.adapter = productAdapter
+        filterCategory()
         search()
         observeLiveData()
     }
@@ -54,6 +55,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 view?.showSnackbar("Arama başarısız")
             }
         }
+        viewModel.categoryProductLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                productAdapter.updateProductList(it)
+            } else {
+                view?.showSnackbar("Category listesi boş")
+            }
+        }
     }
 
     private fun search() {
@@ -68,5 +76,65 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 return true
             }
         })
+    }
+
+    private fun filterCategory() {
+        with(binding) {
+            homeAllTv.setOnClickListener {
+                viewModel.getProducts()
+                homeAllTv.setBackgroundResource(R.drawable.category_background)
+                homeNotebookTv.background = null
+                homeMonitorTv.background = null
+                homeConsoleTv.background = null
+                homeDesktopTv.background = null
+                homeHeadsetTv.background = null
+            }
+            homeNotebookTv.setOnClickListener {
+                viewModel.getCategory("Notebook")
+                homeNotebookTv.setBackgroundResource(R.drawable.category_background)
+                homeAllTv.background = null
+                homeMonitorTv.background = null
+                homeConsoleTv.background = null
+                homeDesktopTv.background = null
+                homeHeadsetTv.background = null
+            }
+            homeMonitorTv.setOnClickListener {
+                viewModel.getCategory("Monitor")
+                homeMonitorTv.setBackgroundResource(R.drawable.category_background)
+                homeAllTv.background = null
+                homeNotebookTv.background = null
+                homeConsoleTv.background = null
+                homeDesktopTv.background = null
+                homeHeadsetTv.background = null
+
+            }
+            homeConsoleTv.setOnClickListener {
+                viewModel.getCategory("Console")
+                homeConsoleTv.setBackgroundResource(R.drawable.category_background)
+                homeAllTv.background = null
+                homeNotebookTv.background = null
+                homeMonitorTv.background = null
+                homeDesktopTv.background = null
+                homeHeadsetTv.background = null
+            }
+            homeDesktopTv.setOnClickListener {
+                viewModel.getCategory("Desktop")
+                homeDesktopTv.setBackgroundResource(R.drawable.category_background)
+                homeAllTv.background = null
+                homeNotebookTv.background = null
+                homeMonitorTv.background = null
+                homeConsoleTv.background = null
+                homeHeadsetTv.background = null
+            }
+            homeHeadsetTv.setOnClickListener {
+                viewModel.getCategory("Headset")
+                homeHeadsetTv.setBackgroundResource(R.drawable.category_background)
+                homeAllTv.background = null
+                homeNotebookTv.background = null
+                homeMonitorTv.background = null
+                homeConsoleTv.background = null
+                homeDesktopTv.background = null
+            }
+        }
     }
 }

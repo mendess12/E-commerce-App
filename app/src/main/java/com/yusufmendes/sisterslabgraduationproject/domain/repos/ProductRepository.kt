@@ -16,4 +16,6 @@ interface ProductRepository {
     suspend fun addToBag(addToCardRequest: AddToCardRequest): Response<CRUD>
 
     suspend fun deleteToProductFromBag(itemId: Int): Response<CRUD>
+
+    suspend fun getCategory(category: String) : Response<Product>
 }

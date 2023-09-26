@@ -32,4 +32,9 @@ interface ProductAPI {
     suspend fun deleteProductFromBag(
         @Body deleteCartRequest: DeleteCartRequest
     ): Response<CRUD>
+
+    @GET("get_products_by_category.php")
+    suspend fun getCategory(
+        @Query("category") category: String
+    ): Response<Product>
 }

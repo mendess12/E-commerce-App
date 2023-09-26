@@ -24,4 +24,7 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
 
     override suspend fun deleteToProductFromBag(itemId: Int): Response<CRUD> =
         productAPI.deleteProductFromBag(DeleteCartRequest(itemId))
+
+    override suspend fun getCategory(category: String): Response<Product> =
+        productAPI.getCategory(category)
 }
