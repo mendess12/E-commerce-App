@@ -3,9 +3,11 @@ package com.yusufmendes.sisterslabgraduationproject.view.bag
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.ClearBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.DeleteToProductFromBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.ClearBagRequest
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,12 +17,14 @@ import javax.inject.Inject
 @HiltViewModel
 class BagViewModel @Inject constructor(
     private val getBagProductUseCase: GetBagProductUseCase,
-    private val deleteToProductFromBagUseCase: DeleteToProductFromBagUseCase
+    private val deleteToProductFromBagUseCase: DeleteToProductFromBagUseCase,
+    private val clearBagUseCase: ClearBagUseCase
 ) :
     ViewModel() {
 
     var bagLiveData = MutableLiveData<List<ProductX>?>()
     val deleteLiveData = MutableLiveData<CRUD?>()
+    var clearBagLiveData = MutableLiveData<CRUD?>()
 
     fun getBagProducts() {
         viewModelScope.launch {
@@ -49,6 +53,22 @@ class BagViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 deleteLiveData.postValue(null)
+            }
+        }
+    }
+
+    fun clearBag(clearBagRequest: ClearBagRequest) {
+        viewModelScope.launch {
+            try {
+                val response = clearBagUseCase(clearBagRequest)
+                if (response.isSuccessful) {
+                    getBagProducts()
+                    clearBagLiveData.postValue(response.body())
+                } else {
+                    clearBagLiveData.postValue(null)
+                }
+            } catch (e: Exception) {
+                clearBagLiveData.postValue(null)
             }
         }
     }
