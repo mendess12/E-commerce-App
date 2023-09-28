@@ -10,7 +10,5 @@ class GetProductUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) :
     SuspendUseCase<Unit, Response<Product>>() {
-    override suspend fun execute(params: Unit): Response<Product> {
-        return productRepository.getProducts()
-    }
+    override suspend fun execute(params: Unit): Response<Product> = productRepository.getProducts()
 }

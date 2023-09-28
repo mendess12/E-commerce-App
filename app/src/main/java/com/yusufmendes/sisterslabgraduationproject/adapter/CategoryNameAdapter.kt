@@ -1,6 +1,5 @@
 package com.yusufmendes.sisterslabgraduationproject.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -43,7 +42,6 @@ class CategoryNameAdapter(private val onClick: (String) -> Unit) :
     fun updateCategoryName(updateCategoryNameList: List<String>) {
         categoryNameList.clear()
         categoryNameList.addAll(updateCategoryNameList)
-        Log.e("category name list", categoryNameList.toString())
-         notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 }

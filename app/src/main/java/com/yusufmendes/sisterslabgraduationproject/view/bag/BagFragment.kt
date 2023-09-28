@@ -21,39 +21,45 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBagBinding.bind(view)
 
-        binding.bagRv.setHasFixedSize(true)
-        binding.bagRv.layoutManager = LinearLayoutManager(requireContext())
         bagProductAdapter = BagProductAdapter {
             viewModel.deleteProduct(it)
         }
+        with(binding.bagRv) {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = bagProductAdapter
+        }
+
         binding.bagScreenToolbar.bagToolbarDeleteIv.setOnClickListener {
             viewModel.clearBag()
         }
-        binding.bagRv.adapter = bagProductAdapter
+
         viewModel.getBagProducts()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        viewModel.bagLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                bagProductAdapter.updateProductList(it)
-            } else {
-                view?.showSnackbar("Sepet boş")
+        with(viewModel) {
+            bagLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    bagProductAdapter.updateProductList(it)
+                } else {
+                    view?.showSnackbar("Sepet boş")
+                }
             }
-        }
-        viewModel.deleteLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                view?.showSnackbar("Ürün silindi")
-            } else {
-                view?.showSnackbar("Ürün silinemedi")
+            deleteLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    view?.showSnackbar("Ürün silindi")
+                } else {
+                    view?.showSnackbar("Ürün silinemedi")
+                }
             }
-        }
-        viewModel.clearBagLiveData.observe(viewLifecycleOwner) {
-            if (it) {
-                view?.showSnackbar("Sepet temizlendi")
-            } else {
-                view?.showSnackbar("Sepet silinemedi")
+            clearBagLiveData.observe(viewLifecycleOwner) {
+                if (it) {
+                    view?.showSnackbar("Sepet temizlendi")
+                } else {
+                    view?.showSnackbar("Sepet silinemedi")
+                }
             }
         }
     }

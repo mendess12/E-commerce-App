@@ -9,9 +9,8 @@ import javax.inject.Inject
 class GetCategoryUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) : SuspendUseCase<CategoryProductParams, Response<Product>>() {
-    override suspend fun execute(params: CategoryProductParams): Response<Product> {
-        return productRepository.getCategory(params.category)
-    }
+    override suspend fun execute(params: CategoryProductParams): Response<Product> =
+        productRepository.getCategory(params.category)
 }
 
 data class CategoryProductParams(val category: String)

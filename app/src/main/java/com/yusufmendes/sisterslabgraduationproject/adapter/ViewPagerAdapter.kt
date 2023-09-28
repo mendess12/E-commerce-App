@@ -13,7 +13,6 @@ class ViewPagerAdapter(
 ) :
     RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
-
     inner class ViewPagerViewHolder(val binding: ItemViewPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(imageUrl: String) {

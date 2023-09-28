@@ -10,7 +10,6 @@ class DeleteToProductFromBagUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) :
     SuspendUseCase<Int, Response<CRUD>>() {
-    override suspend fun execute(params: Int): Response<CRUD> {
-        return productRepository.deleteToProductFromBag(params)
-    }
+    override suspend fun execute(params: Int): Response<CRUD> =
+        productRepository.deleteToProductFromBag(params)
 }

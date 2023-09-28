@@ -11,7 +11,6 @@ class AddToBagUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) :
     SuspendUseCase<AddToCardRequest, Response<CRUD>>() {
-    override suspend fun execute(params: AddToCardRequest): Response<CRUD> {
-        return productRepository.addToBag(params)
-    }
+    override suspend fun execute(params: AddToCardRequest): Response<CRUD> =
+        productRepository.addToBag(params)
 }

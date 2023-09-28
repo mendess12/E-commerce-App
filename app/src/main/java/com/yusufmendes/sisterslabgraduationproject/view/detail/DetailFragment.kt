@@ -103,15 +103,20 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         handler = Handler(Looper.myLooper()!!)
 
         imageList = ArrayList()
-        imageList.add(args.product.imageOne)
-        imageList.add(args.product.imageThree)
-        imageList.add(args.product.imageTwo)
+        with(imageList) {
+            add(args.product.imageOne)
+            add(args.product.imageThree)
+            add(args.product.imageTwo)
+        }
+
         viewPagerAdapter = ViewPagerAdapter(imageList, viewPager2)
 
-        viewPager2.adapter = viewPagerAdapter
-        viewPager2.offscreenPageLimit = 3
-        viewPager2.clipToPadding = false
-        viewPager2.clipChildren = false
-        viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        with(viewPager2) {
+            adapter = viewPagerAdapter
+            offscreenPageLimit = 3
+            clipToPadding = false
+            clipChildren = false
+            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        }
     }
 }

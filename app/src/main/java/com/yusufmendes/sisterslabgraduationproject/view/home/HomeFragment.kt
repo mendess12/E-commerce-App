@@ -60,33 +60,35 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun observeLiveData() {
-        viewModel.productLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                productAdapter.updateProductList(it)
-            } else {
-                view?.showSnackbar("Ürün listesi boş")
+        with(viewModel) {
+            productLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    productAdapter.updateProductList(it)
+                } else {
+                    view?.showSnackbar("Ürün listesi boş")
+                }
             }
-        }
-        viewModel.searchProductLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                productAdapter.updateProductList(it)
-            } else {
-                view?.showSnackbar("Arama başarısız")
+            searchProductLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    productAdapter.updateProductList(it)
+                } else {
+                    view?.showSnackbar("Arama başarısız")
+                }
             }
-        }
-        viewModel.categoryProductLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                productAdapter.updateProductList(it)
-            } else {
-                view?.showSnackbar("Category listesi boş")
+            categoryProductLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    productAdapter.updateProductList(it)
+                } else {
+                    view?.showSnackbar("Category listesi boş")
+                }
             }
-        }
-        viewModel.categoryNameLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
-                Log.e("it", it.toString())
-                categoryNameAdapter.updateCategoryName(it)
-            } else {
-                view?.showSnackbar("Liste boş")
+            categoryNameLiveData.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    Log.e("it", it.toString())
+                    categoryNameAdapter.updateCategoryName(it)
+                } else {
+                    view?.showSnackbar("Liste boş")
+                }
             }
         }
     }

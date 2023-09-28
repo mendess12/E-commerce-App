@@ -9,9 +9,8 @@ import javax.inject.Inject
 class SearchProductUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) : SuspendUseCase<SearchProductParams, Response<Product>>() {
-    override suspend fun execute(params: SearchProductParams): Response<Product> {
-        return productRepository.searchProduct(params.query)
-    }
+    override suspend fun execute(params: SearchProductParams): Response<Product> =
+        productRepository.searchProduct(params.query)
 }
 
 data class SearchProductParams(val query: String)

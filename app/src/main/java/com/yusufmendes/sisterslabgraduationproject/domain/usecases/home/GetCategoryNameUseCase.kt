@@ -10,7 +10,6 @@ class GetCategoryNameUseCase @Inject constructor(
     private val productRepository: ProductRepository
 ) :
     SuspendUseCase<Unit, Response<Category>>() {
-    override suspend fun execute(params: Unit): Response<Category> {
-        return productRepository.getCategoryName()
-    }
+    override suspend fun execute(params: Unit): Response<Category> =
+        productRepository.getCategoryName()
 }

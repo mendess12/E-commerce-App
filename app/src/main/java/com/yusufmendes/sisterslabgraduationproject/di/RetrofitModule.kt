@@ -59,5 +59,4 @@ object RetrofitModule {
     fun provideMovieAppService(retrofit: Retrofit): ProductAPI {
         return retrofit.create(ProductAPI::class.java)
     }
-
 }

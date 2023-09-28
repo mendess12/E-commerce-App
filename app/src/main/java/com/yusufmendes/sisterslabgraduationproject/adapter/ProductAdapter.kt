@@ -1,6 +1,5 @@
 package com.yusufmendes.sisterslabgraduationproject.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,7 +58,6 @@ class ProductAdapter(
     fun updateProductList(updateProductList: List<ProductX>) {
         productList.clear()
         productList.addAll(updateProductList)
-        Log.e("update", productList.toString())
         notifyDataSetChanged()
     }
 }
