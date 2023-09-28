@@ -2,6 +2,7 @@ package com.yusufmendes.sisterslabgraduationproject.services
 
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import retrofit2.Response
@@ -37,4 +38,7 @@ interface ProductAPI {
     suspend fun getCategory(
         @Query("category") category: String
     ): Response<Product>
+
+    @GET("get_categories.php")
+    suspend fun getCategoryName(): Response<Category>
 }

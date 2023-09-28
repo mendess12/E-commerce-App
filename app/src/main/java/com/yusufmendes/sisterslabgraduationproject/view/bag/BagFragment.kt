@@ -50,7 +50,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
             }
         }
         viewModel.clearBagLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
+            if (it) {
                 view?.showSnackbar("Sepet temizlendi")
             } else {
                 view?.showSnackbar("Sepet silinemedi")

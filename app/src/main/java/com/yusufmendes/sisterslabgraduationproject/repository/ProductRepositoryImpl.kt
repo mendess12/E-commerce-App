@@ -3,6 +3,7 @@ package com.yusufmendes.sisterslabgraduationproject.repository
 import com.yusufmendes.sisterslabgraduationproject.domain.repos.ProductRepository
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.services.ProductAPI
@@ -27,4 +28,6 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
 
     override suspend fun getCategory(category: String): Response<Product> =
         productAPI.getCategory(category)
+
+    override suspend fun getCategoryName(): Response<Category> = productAPI.getCategoryName()
 }

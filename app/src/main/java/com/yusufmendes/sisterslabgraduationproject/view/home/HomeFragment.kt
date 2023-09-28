@@ -1,13 +1,16 @@
 package com.yusufmendes.sisterslabgraduationproject.view.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
+import com.yusufmendes.sisterslabgraduationproject.adapter.CategoryNameAdapter
 import com.yusufmendes.sisterslabgraduationproject.adapter.ProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentHomeBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
@@ -19,20 +22,36 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var productAdapter: ProductAdapter
+    private lateinit var categoryNameAdapter: CategoryNameAdapter
     private val viewModel: HomeFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        binding.homeRv.setHasFixedSize(true)
-        binding.homeRv.layoutManager =
-            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         productAdapter = ProductAdapter(::navigateToDetail)
-        binding.homeRv.adapter = productAdapter
-        filterCategory()
+        with(binding) {
+            homeRv.setHasFixedSize(true)
+            homeRv.layoutManager =
+                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            homeRv.adapter = productAdapter
+        }
+
+        categoryNameAdapter = CategoryNameAdapter(::getCategoryName)
+        with(binding) {
+            categoryRv.setHasFixedSize(true)
+            categoryRv.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            categoryRv.adapter = categoryNameAdapter
+        }
+
+        viewModel.getCategoryName()
         search()
         observeLiveData()
+    }
+
+    private fun getCategoryName(categoryName: String) {
+        viewModel.getCategory(categoryName)
     }
 
     private fun navigateToDetail(product: ProductX) {
@@ -62,6 +81,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 view?.showSnackbar("Category listesi boş")
             }
         }
+        viewModel.categoryNameLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
+                Log.e("it", it.toString())
+                categoryNameAdapter.updateCategoryName(it)
+            } else {
+                view?.showSnackbar("Liste boş")
+            }
+        }
     }
 
     private fun search() {
@@ -76,65 +103,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 return true
             }
         })
-    }
-
-    private fun filterCategory() {
-        with(binding) {
-            homeAllTv.setOnClickListener {
-                viewModel.getProducts()
-                homeAllTv.setBackgroundResource(R.drawable.category_background)
-                homeNotebookTv.background = null
-                homeMonitorTv.background = null
-                homeConsoleTv.background = null
-                homeDesktopTv.background = null
-                homeHeadsetTv.background = null
-            }
-            homeNotebookTv.setOnClickListener {
-                viewModel.getCategory("Notebook")
-                homeNotebookTv.setBackgroundResource(R.drawable.category_background)
-                homeAllTv.background = null
-                homeMonitorTv.background = null
-                homeConsoleTv.background = null
-                homeDesktopTv.background = null
-                homeHeadsetTv.background = null
-            }
-            homeMonitorTv.setOnClickListener {
-                viewModel.getCategory("Monitor")
-                homeMonitorTv.setBackgroundResource(R.drawable.category_background)
-                homeAllTv.background = null
-                homeNotebookTv.background = null
-                homeConsoleTv.background = null
-                homeDesktopTv.background = null
-                homeHeadsetTv.background = null
-
-            }
-            homeConsoleTv.setOnClickListener {
-                viewModel.getCategory("Console")
-                homeConsoleTv.setBackgroundResource(R.drawable.category_background)
-                homeAllTv.background = null
-                homeNotebookTv.background = null
-                homeMonitorTv.background = null
-                homeDesktopTv.background = null
-                homeHeadsetTv.background = null
-            }
-            homeDesktopTv.setOnClickListener {
-                viewModel.getCategory("Desktop")
-                homeDesktopTv.setBackgroundResource(R.drawable.category_background)
-                homeAllTv.background = null
-                homeNotebookTv.background = null
-                homeMonitorTv.background = null
-                homeConsoleTv.background = null
-                homeHeadsetTv.background = null
-            }
-            homeHeadsetTv.setOnClickListener {
-                viewModel.getCategory("Headset")
-                homeHeadsetTv.setBackgroundResource(R.drawable.category_background)
-                homeAllTv.background = null
-                homeNotebookTv.background = null
-                homeMonitorTv.background = null
-                homeConsoleTv.background = null
-                homeDesktopTv.background = null
-            }
-        }
     }
 }
