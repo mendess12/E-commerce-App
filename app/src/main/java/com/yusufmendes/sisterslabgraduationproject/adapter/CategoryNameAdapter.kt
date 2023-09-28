@@ -44,6 +44,6 @@ class CategoryNameAdapter(private val onClick: (String) -> Unit) :
         categoryNameList.clear()
         categoryNameList.addAll(updateCategoryNameList)
         Log.e("category name list", categoryNameList.toString())
-        notifyDataSetChanged()
+         notifyDataSetChanged()
     }
 }
