@@ -19,9 +19,10 @@ Projemi geliştirirken kullandığım yapılar ve kütüphaneler
 - Picasso
 
 # Home Screen
-| Product List              | SearchView      | Product List of Category |
-| ------------------------- | ------------------------- | ------------------------- |
-| ![productlist](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/26f10207-1da2-4650-8af1-cca604a1e918) | ![searchview](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/31bd8284-2808-4002-a7c1-e980a4175946) | ![productlistofcategory](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/1d26e71e-65f1-42c6-9479-dd78ec41c011) |
+| Product List              | SearchView      | Product List of Category | SearchView & Product List of Category Video |
+| ------------------------- | ------------------------- | ------------------------- | ------------------------- |
+| ![product](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/44a2b351-4acc-43a3-ae78-63057cc0fdea) | ![search](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/41da73e9-209a-4b0e-8cb5-109d161e2d06) | ![category](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/e3d1cd2b-e7c3-42c1-9f15-9dff8d9e5ff7) | ![untitled](https://github.com/mendess12/SistersLabGraduationProject/assets/76566952/0c5416c1-071b-466d-8cb4-4570b424914b) |
+
 
 # Detail & Bag Screen
 | Detail             | Bag      |
