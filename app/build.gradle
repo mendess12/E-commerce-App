@@ -57,7 +57,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.picasso:picasso:2.8'
 
     //view pager2
     implementation("androidx.viewpager2:viewpager2:1.0.0")
