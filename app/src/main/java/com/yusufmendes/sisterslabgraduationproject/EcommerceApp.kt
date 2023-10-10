@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.di
+package com.yusufmendes.sisterslabgraduationproject
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
