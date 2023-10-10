@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.yusufmendes.sisterslabgraduationproject.view.home.HomeFragment"
+        android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/bagFragment"
-        android:name="com.yusufmendes.sisterslabgraduationproject.view.bag.BagFragment"
+        android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.bag.BagFragment"
         android:label="fragment_bag"
         tools:layout="@layout/fragment_bag" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.yusufmendes.sisterslabgraduationproject.view.detail.DetailFragment"
+        android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
 

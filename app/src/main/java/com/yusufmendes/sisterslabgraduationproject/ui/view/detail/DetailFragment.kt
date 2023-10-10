@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.view.detail
+package com.yusufmendes.sisterslabgraduationproject.ui.view.detail
 
 import android.os.Bundle
 import android.os.Handler
@@ -13,7 +13,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.yusufmendes.sisterslabgraduationproject.R
-import com.yusufmendes.sisterslabgraduationproject.adapter.ViewPagerAdapter
+import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ViewPagerAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentDetailBinding
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar

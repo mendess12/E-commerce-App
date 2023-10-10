@@ -1,6 +1,6 @@
-package com.yusufmendes.sisterslabgraduationproject.di
+package com.yusufmendes.sisterslabgraduationproject.data.di
 
-import com.yusufmendes.sisterslabgraduationproject.services.ProductAPI
+import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
 import com.yusufmendes.sisterslabgraduationproject.util.constants.Constants.BASE_URL
 import com.yusufmendes.sisterslabgraduationproject.util.constants.Constants.STORE
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.repository
+package com.yusufmendes.sisterslabgraduationproject.data.repository
 
 import com.yusufmendes.sisterslabgraduationproject.domain.repos.ProductRepository
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
@@ -6,7 +6,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
-import com.yusufmendes.sisterslabgraduationproject.services.ProductAPI
+import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
 import retrofit2.Response
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.adapter
+package com.yusufmendes.sisterslabgraduationproject.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

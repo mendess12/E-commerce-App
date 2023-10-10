@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.services
+package com.yusufmendes.sisterslabgraduationproject.data.remote
 
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD

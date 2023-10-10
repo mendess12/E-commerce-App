@@ -1,7 +1,7 @@
-package com.yusufmendes.sisterslabgraduationproject.di
+package com.yusufmendes.sisterslabgraduationproject.data.di
 
 import com.yusufmendes.sisterslabgraduationproject.domain.repos.ProductRepository
-import com.yusufmendes.sisterslabgraduationproject.repository.ProductRepositoryImpl
+import com.yusufmendes.sisterslabgraduationproject.data.repository.ProductRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

@@ -1,9 +1,10 @@
-package com.yusufmendes.sisterslabgraduationproject
+package com.yusufmendes.sisterslabgraduationproject.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

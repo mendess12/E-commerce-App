@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.view.detail
+package com.yusufmendes.sisterslabgraduationproject.ui.view.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

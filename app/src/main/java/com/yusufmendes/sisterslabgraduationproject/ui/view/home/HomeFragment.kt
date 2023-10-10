@@ -1,4 +1,4 @@
-package com.yusufmendes.sisterslabgraduationproject.view.home
+package com.yusufmendes.sisterslabgraduationproject.ui.view.home
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
-import com.yusufmendes.sisterslabgraduationproject.adapter.CategoryNameAdapter
-import com.yusufmendes.sisterslabgraduationproject.adapter.ProductAdapter
+import com.yusufmendes.sisterslabgraduationproject.ui.adapter.CategoryNameAdapter
+import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentHomeBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
