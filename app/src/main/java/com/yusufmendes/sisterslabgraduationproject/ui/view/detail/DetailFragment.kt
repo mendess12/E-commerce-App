@@ -16,7 +16,8 @@ import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ViewPagerAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentDetailBinding
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
-import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
+import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
+import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -76,10 +77,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
     private fun observeLiveData() {
         viewModel.addBagLiveData.observe(viewLifecycleOwner) {
-            if (it != null) {
+            it.doOnSuccess {
                 findNavController().popBackStack()
-            } else {
-                view?.showSnackbar("Sepete ekleme başarısız")
+            }.doOnFailure {
+                showError(it)
             }
         }
     }
@@ -118,5 +119,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
             clipChildren = false
             getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
+    }
+
+    private fun showError(error: Throwable) {
+        showSnackBar(error.message ?: "Unexpected error")
     }
 }

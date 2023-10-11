@@ -1,8 +1,13 @@
 package com.yusufmendes.sisterslabgraduationproject.data.di
 
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
+import com.yusufmendes.sisterslabgraduationproject.model.AppResponse
 import com.yusufmendes.sisterslabgraduationproject.util.constants.Constants.BASE_URL
 import com.yusufmendes.sisterslabgraduationproject.util.constants.Constants.STORE
+import com.yusufmendes.sisterslabgraduationproject.util.retrofit.ResultCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,8 +15,11 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
+import okhttp3.Response
+import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -22,12 +30,28 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun getInterceptor(): Interceptor {
+        // TODO default http interceptor
         return Interceptor {
             val request = it.request().newBuilder()
                 .addHeader("Content-Type", "application/json")
                 .addHeader("store", STORE).build()
 
-            it.proceed(request)
+            val response = it.proceed(request)
+            val responseBody: String = response.body?.string().orEmpty()
+            val appResponse = GsonBuilder().create().fromJson(responseBody, AppResponse::class.java)
+            if (appResponse.isSuccess) {
+                it.proceed(request)
+            } else {
+                val contentJson = Gson().toJson(appResponse)
+                Log.e("Interceptor", "ContentJson = $contentJson")
+                Response.Builder()
+                    .code(appResponse.status ?: -1)
+                    .message(appResponse.message.orEmpty())
+                    .protocol(response.protocol)
+                    .request(response.request)
+                    .body(ResponseBody.create(response.body?.contentType(), responseBody))
+                    .build()
+            }
         }
     }
 
@@ -51,6 +75,8 @@ object RetrofitModule {
     fun provideProductAPI(): Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create())
+        .addCallAdapterFactory(ResultCallAdapterFactory.create())
         .client(getOkHttpClient(getInterceptor()))
         .build()
 

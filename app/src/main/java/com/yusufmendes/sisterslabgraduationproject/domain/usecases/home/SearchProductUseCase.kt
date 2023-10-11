@@ -1,5 +1,6 @@
 package com.yusufmendes.sisterslabgraduationproject.domain.usecases.home
 
+import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.domain.SuspendUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.repos.ProductRepository
 import com.yusufmendes.sisterslabgraduationproject.model.Product
@@ -8,8 +9,8 @@ import javax.inject.Inject
 
 class SearchProductUseCase @Inject constructor(
     private val productRepository: ProductRepository
-) : SuspendUseCase<SearchProductParams, Response<Product>>() {
-    override suspend fun execute(params: SearchProductParams): Response<Product> =
+) : SuspendUseCase<SearchProductParams, AppResult<Product>>() {
+    override suspend fun execute(params: SearchProductParams): AppResult<Product> =
         productRepository.searchProduct(params.query)
 }
 

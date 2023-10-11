@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.BagProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentBagBinding
-import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
+import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,21 +44,21 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
                 if (it != null) {
                     bagProductAdapter.updateProductList(it)
                 } else {
-                    view?.showSnackbar("Sepet boş")
+                    view?.showSnackBar("Sepet boş")
                 }
             }
             deleteLiveData.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    view?.showSnackbar("Ürün silindi")
+                    view?.showSnackBar("Ürün silindi")
                 } else {
-                    view?.showSnackbar("Ürün silinemedi")
+                    view?.showSnackBar("Ürün silinemedi")
                 }
             }
             clearBagLiveData.observe(viewLifecycleOwner) {
-                if (it) {
-                    view?.showSnackbar("Sepet temizlendi")
+                if (it.isSuccess()) {
+                    view?.showSnackBar("Sepet temizlendi")
                 } else {
-                    view?.showSnackbar("Sepet silinemedi")
+                    view?.showSnackBar("Sepet silinemedi")
                 }
             }
         }

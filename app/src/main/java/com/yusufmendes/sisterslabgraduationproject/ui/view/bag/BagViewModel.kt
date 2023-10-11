@@ -3,6 +3,7 @@ package com.yusufmendes.sisterslabgraduationproject.ui.view.bag
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.ClearBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.DeleteToProductFromBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagProductUseCase
@@ -22,18 +23,13 @@ class BagViewModel @Inject constructor(
 
     var bagLiveData = MutableLiveData<List<ProductX>?>()
     val deleteLiveData = MutableLiveData<CRUD?>()
-    var clearBagLiveData = MutableLiveData<Boolean>()
+    var clearBagLiveData = MutableLiveData<AppResult<Unit>>()
 
     fun getBagProducts() {
         viewModelScope.launch {
-            try {
-                val response = getBagProductUseCase(Unit)
-                if (response.isSuccessful) {
-                    bagLiveData.postValue(response.body()?.products)
-                } else {
-                    bagLiveData.postValue(null)
-                }
-            } catch (e: Exception) {
+            getBagProductUseCase(Unit).doOnSuccess {
+                bagLiveData.postValue(it.products)
+            }.doOnFailure {
                 bagLiveData.postValue(null)
             }
         }
@@ -41,15 +37,10 @@ class BagViewModel @Inject constructor(
 
     fun deleteProduct(itemId: Int) {
         viewModelScope.launch {
-            try {
-                val response = deleteToProductFromBagUseCase(itemId)
-                if (response.isSuccessful) {
-                    removeItemFromVisibleList(itemId)
-                    deleteLiveData.postValue(response.body())
-                } else {
-                    deleteLiveData.postValue(null)
-                }
-            } catch (e: Exception) {
+            deleteToProductFromBagUseCase(itemId).doOnSuccess {
+                removeItemFromVisibleList(itemId)
+                deleteLiveData.postValue(it)
+            }.doOnFailure {
                 deleteLiveData.postValue(null)
             }
         }
@@ -58,17 +49,10 @@ class BagViewModel @Inject constructor(
     fun clearBag() {
         val itemsInCart = bagLiveData.value ?: return
         viewModelScope.launch {
-            try {
-                val response = clearBagUseCase(itemsInCart)
-                if (response) {
-                    getBagProducts()
-                    clearBagLiveData.postValue(response)
-                } else {
-                    clearBagLiveData.postValue(false)
-                }
-            } catch (e: Exception) {
-                clearBagLiveData.postValue(false)
+            val result = clearBagUseCase(itemsInCart).doOnSuccess {
+                getBagProducts()
             }
+            clearBagLiveData.postValue(result)
         }
     }
 

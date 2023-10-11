@@ -14,7 +14,7 @@ import com.yusufmendes.sisterslabgraduationproject.ui.adapter.CategoryNameAdapte
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentHomeBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
-import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackbar
+import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,27 +59,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         findNavController().navigate(action)
     }
 
+    // TODO hatalari showError methodunda goster
     private fun observeLiveData() {
         with(viewModel) {
             productLiveData.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    productAdapter.updateProductList(it)
-                } else {
-                    view?.showSnackbar("Ürün listesi boş")
+                it.doOnSuccess {
+                    productAdapter.updateProductList(it.products)
+                }.doOnFailure {
+                    TODO("through showError Method")
                 }
             }
             searchProductLiveData.observe(viewLifecycleOwner) {
-                if (it != null) {
+                Log.e("HomeFragment","searchProductLiveData = $it")
+                it.doOnSuccess {
                     productAdapter.updateProductList(it)
-                } else {
-                    view?.showSnackbar("Arama başarısız")
+                }.doOnFailure {
+                    view?.showSnackBar("Arama başarısız")
                 }
             }
             categoryProductLiveData.observe(viewLifecycleOwner) {
+                Log.e("HomeFragment","categoryProductLiveData = $it")
                 if (it != null) {
                     productAdapter.updateProductList(it)
                 } else {
-                    view?.showSnackbar("Category listesi boş")
+                    view?.showSnackBar("Category listesi boş")
                 }
             }
             categoryNameLiveData.observe(viewLifecycleOwner) {
@@ -87,7 +90,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     Log.e("it", it.toString())
                     categoryNameAdapter.updateCategoryName(it)
                 } else {
-                    view?.showSnackbar("Liste boş")
+                    view?.showSnackBar("Liste boş")
                 }
             }
         }
