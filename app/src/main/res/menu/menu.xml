@@ -9,4 +9,8 @@
         android:id="@+id/bagFragment"
         android:icon="@drawable/baseline_shopping_cart_24"
         android:title="@string/bag" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/baseline_account_circle_24"
+        android:title="@string/profile" />
 </menu>

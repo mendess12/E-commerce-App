@@ -26,7 +26,12 @@
         tools:layout="@layout/fragment_detail" >
 
         <argument
-            android:name="product"
+            android:name="porduct"
             app:argType="com.yusufmendes.sisterslabgraduationproject.model.ProductX" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
