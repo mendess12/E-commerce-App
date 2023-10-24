@@ -7,7 +7,7 @@
     <string name="search">Search...</string>
     <string name="add_bag">Add To Bag</string>
     <string name="home">Home</string>
-    <string name="bag">Bag</string>
+    <string name="bag">Basket</string>
     <string name="price">%s ₺</string>
     <string name="your_cart">Your Cart</string>
     <string name="all">All</string>
@@ -16,4 +16,12 @@
     <string name="console">Console</string>
     <string name="desktop">Desktop</string>
     <string name="headset">Headset</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="profile">Profile</string>
+    <string name="home_address">...İstanbul/Ataşehir</string>
 </resources>

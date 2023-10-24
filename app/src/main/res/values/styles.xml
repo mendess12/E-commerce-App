@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="title" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/text_size_32sp</item>
+        <item name="android:padding">@dimen/padding_8dp</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
     <style name="head" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_size_20sp</item>
         <item name="android:padding">@dimen/padding_4dp</item>
