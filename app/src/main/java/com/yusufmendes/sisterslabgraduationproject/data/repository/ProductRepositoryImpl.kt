@@ -8,7 +8,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
 import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
-import retrofit2.Response
+import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import javax.inject.Inject
 
 class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductAPI) :
@@ -31,4 +31,6 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
         productAPI.getCategory(category)
 
     override suspend fun getCategoryName(): AppResult<Category> = productAPI.getCategoryName()
+
+    override suspend fun login(loginBody: LoginBody): AppResult<CRUD> = productAPI.login(loginBody)
 }

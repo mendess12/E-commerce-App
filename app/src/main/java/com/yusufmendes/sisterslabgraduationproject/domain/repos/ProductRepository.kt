@@ -4,8 +4,8 @@ import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.Category
+import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.Product
-import retrofit2.Response
 
 interface ProductRepository {
 
@@ -22,4 +22,6 @@ interface ProductRepository {
     suspend fun getCategory(category: String): AppResult<Product>
 
     suspend fun getCategoryName(): AppResult<Category>
+
+    suspend fun login(loginBody: LoginBody) : AppResult<CRUD>
 }

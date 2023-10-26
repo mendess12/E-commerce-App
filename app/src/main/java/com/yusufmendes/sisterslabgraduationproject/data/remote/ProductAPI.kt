@@ -5,8 +5,8 @@ import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
+import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.Product
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -42,4 +42,9 @@ interface ProductAPI {
 
     @GET("get_categories.php")
     suspend fun getCategoryName(): AppResult<Category>
+
+    @POST("sign_in.php")
+    suspend fun login(
+        @Body loginBody: LoginBody
+    ): AppResult<CRUD>
 }
