@@ -7,6 +7,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.Product
+import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -46,5 +47,10 @@ interface ProductAPI {
     @POST("sign_in.php")
     suspend fun login(
         @Body loginBody: LoginBody
+    ): AppResult<CRUD>
+
+    @POST("sign_up.php")
+    suspend fun register(
+        @Body registerBody: RegisterBody
     ): AppResult<CRUD>
 }
