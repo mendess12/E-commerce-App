@@ -2,6 +2,7 @@ package com.yusufmendes.sisterslabgraduationproject.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.yusufmendes.sisterslabgraduationproject.R
@@ -25,5 +26,21 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigationView,
             navHostFragment.navController
         )
+
+        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when (destination.id) {
+                R.id.loginFragment,
+                R.id.registerFragment,
+                R.id.detailFragment -> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+
+                else -> {
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                }
+            }
+        }
+
     }
 }
