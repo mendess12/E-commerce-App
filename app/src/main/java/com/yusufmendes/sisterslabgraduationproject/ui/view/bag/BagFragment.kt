@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.BagProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentBagBinding
+import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
 import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackBar
+import com.yusufmendes.sisterslabgraduationproject.util.storage.SharedPrefManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,8 +23,10 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBagBinding.bind(view)
 
+        val userId = SharedPrefManager.getInstance(requireActivity()).data.userId
+
         bagProductAdapter = BagProductAdapter {
-            viewModel.deleteProduct(it)
+            viewModel.deleteProduct(it, userId)
         }
         with(binding.bagRv) {
             setHasFixedSize(true)
@@ -31,27 +35,27 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         }
 
         binding.bagScreenToolbar.bagToolbarDeleteIv.setOnClickListener {
-            viewModel.clearBag()
+            viewModel.clearBag(userId)
         }
 
-        viewModel.getBagProducts()
+        viewModel.getBagProducts(userId)
         observeLiveData()
     }
 
     private fun observeLiveData() {
         with(viewModel) {
             bagLiveData.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    bagProductAdapter.updateProductList(it)
-                } else {
-                    view?.showSnackBar("Sepet boş")
+                it.doOnSuccess {
+                    it.products?.let { it1 -> bagProductAdapter.updateProductList(it1) }
+                }.doOnFailure {
+                    showError(it)
                 }
             }
             deleteLiveData.observe(viewLifecycleOwner) {
-                if (it != null) {
+                it.doOnSuccess {
                     view?.showSnackBar("Ürün silindi")
-                } else {
-                    view?.showSnackBar("Ürün silinemedi")
+                }.doOnFailure {
+                    showError(it)
                 }
             }
             clearBagLiveData.observe(viewLifecycleOwner) {
@@ -62,5 +66,9 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
                 }
             }
         }
+    }
+
+    private fun showError(error: Throwable) {
+        showSnackBar(error.message ?: "Unexpected error")
     }
 }

@@ -4,11 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
+import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.BagParams
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.ClearBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.DeleteToProductFromBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
-import com.yusufmendes.sisterslabgraduationproject.model.ProductX
+import com.yusufmendes.sisterslabgraduationproject.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,44 +22,33 @@ class BagViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    var bagLiveData = MutableLiveData<List<ProductX>?>()
-    val deleteLiveData = MutableLiveData<CRUD?>()
+    var bagLiveData = MutableLiveData<AppResult<Product>>()
+    val deleteLiveData = MutableLiveData<AppResult<CRUD>>()
     var clearBagLiveData = MutableLiveData<AppResult<Unit>>()
 
-    fun getBagProducts() {
+    fun getBagProducts(userId: String) {
         viewModelScope.launch {
-            getBagProductUseCase(Unit).doOnSuccess {
-                bagLiveData.postValue(it.products)
-            }.doOnFailure {
-                bagLiveData.postValue(null)
-            }
+            val result = getBagProductUseCase(BagParams(userId))
+            bagLiveData.postValue(result)
+
         }
     }
 
-    fun deleteProduct(itemId: Int) {
+    fun deleteProduct(itemId: Int, userId: String) {
         viewModelScope.launch {
-            deleteToProductFromBagUseCase(itemId).doOnSuccess {
-                removeItemFromVisibleList(itemId)
-                deleteLiveData.postValue(it)
-            }.doOnFailure {
-                deleteLiveData.postValue(null)
-            }
+            val result = deleteToProductFromBagUseCase(itemId)
+            deleteLiveData.postValue(result)
+            getBagProducts(userId)
         }
     }
 
-    fun clearBag() {
-        val itemsInCart = bagLiveData.value ?: return
-        viewModelScope.launch {
-            val result = clearBagUseCase(itemsInCart).doOnSuccess {
-                getBagProducts()
-            }
-            clearBagLiveData.postValue(result)
-        }
-    }
-
-    private fun removeItemFromVisibleList(deletedItemId: Int) {
-        val productList = bagLiveData.value ?: return
-        val newProductList = productList.filter { it.id != deletedItemId }
-        bagLiveData.postValue(newProductList)
+    fun clearBag(userId: String) {
+        val itemsInCart: AppResult<Product> = bagLiveData.value ?: return
+        /* viewModelScope.launch {
+             val result = clearBagUseCase(itemsInCart.get().products).doOnSuccess {
+                 getBagProducts(userId)
+             }
+             clearBagLiveData.postValue(result)
+         }*/
     }
 }

@@ -14,7 +14,7 @@ interface ProductRepository {
 
     suspend fun getProducts(): AppResult<Product>
 
-    suspend fun getBagProducts(): AppResult<Product>
+    suspend fun getBagProducts(userId: String): AppResult<Product>
 
     suspend fun searchProduct(query: String): AppResult<Product>
 

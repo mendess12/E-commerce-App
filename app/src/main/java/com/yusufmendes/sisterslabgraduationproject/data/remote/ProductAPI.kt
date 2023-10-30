@@ -20,8 +20,10 @@ interface ProductAPI {
     @GET("get_products.php")
     suspend fun getProductData(): AppResult<Product>
 
-    @GET("get_cart_products.php?userId=b3sa6dj721312ssadas21d")
-    suspend fun getBagProductsData(): AppResult<Product>
+    @GET("get_cart_products.php")
+    suspend fun getBagProductsData(
+        @Query("userId") userId: String
+    ): AppResult<Product>
 
     @GET("search_product.php")
     suspend fun searchProduct(
