@@ -5,6 +5,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
+import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
 
@@ -24,7 +25,7 @@ interface ProductRepository {
 
     suspend fun getCategoryName(): AppResult<Category>
 
-    suspend fun login(loginBody: LoginBody) : AppResult<CRUD>
+    suspend fun login(loginBody: LoginBody) : AppResult<LoginResponse>
 
     suspend fun register(registerBody: RegisterBody) : AppResult<CRUD>
 }

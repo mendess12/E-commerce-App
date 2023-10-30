@@ -9,6 +9,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
 import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
+import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
 import javax.inject.Inject
 
@@ -33,7 +34,7 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
 
     override suspend fun getCategoryName(): AppResult<Category> = productAPI.getCategoryName()
 
-    override suspend fun login(loginBody: LoginBody): AppResult<CRUD> = productAPI.login(loginBody)
+    override suspend fun login(loginBody: LoginBody): AppResult<LoginResponse> = productAPI.login(loginBody)
 
     override suspend fun register(registerBody: RegisterBody): AppResult<CRUD> =
         productAPI.register(registerBody)
