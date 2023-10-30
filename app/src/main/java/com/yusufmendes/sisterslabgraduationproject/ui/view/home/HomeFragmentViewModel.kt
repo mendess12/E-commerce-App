@@ -11,11 +11,10 @@ import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetCateg
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductParams
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductUseCase
+import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.Product
-import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,9 +27,9 @@ class HomeFragmentViewModel @Inject constructor(
     ViewModel() {
 
     val productLiveData = MutableLiveData<AppResult<Product>>()
-    val searchProductLiveData = MutableLiveData<AppResult<List<ProductX>>>()
-    val categoryProductLiveData = MutableLiveData<List<ProductX>?>()
-    val categoryNameLiveData = MutableLiveData<List<String>?>()
+    val searchProductLiveData = MutableLiveData<AppResult<Product>>()
+    val categoryProductLiveData = MutableLiveData<AppResult<Product>>()
+    val categoryNameLiveData = MutableLiveData<AppResult<Category>>()
 
     init {
         getProducts()
@@ -46,18 +45,16 @@ class HomeFragmentViewModel @Inject constructor(
 
     fun searchProduct(query: String) {
         viewModelScope.launch {
-            searchProductLiveData.postValue(searchProductUseCase(SearchProductParams(query)).map { it.products })
+            val result = searchProductUseCase(SearchProductParams(query))
+            searchProductLiveData.postValue(result)
         }
     }
 
     fun getCategory(category: String) {
         if (category == "All") return getProducts()
         viewModelScope.launch {
-            categoryUseCase(CategoryProductParams(category)).doOnSuccess {
-                categoryProductLiveData.postValue(it.products)
-            }.doOnFailure {
-                categoryProductLiveData.postValue(null)
-            }
+            val result = categoryUseCase(CategoryProductParams(category))
+            categoryProductLiveData.postValue(result)
         }
     }
 
@@ -65,12 +62,8 @@ class HomeFragmentViewModel @Inject constructor(
         val addCategory: MutableList<String> = mutableListOf()
         addCategory.add("All")
         viewModelScope.launch {
-            categoryNameUseCase(Unit).doOnSuccess {
-                addCategory.addAll(it.categories)
-                categoryNameLiveData.postValue(addCategory)
-            }.doOnFailure {
-                categoryNameLiveData.postValue(null)
-            }
+            val result = categoryNameUseCase(Unit)
+            categoryNameLiveData.postValue(result)
         }
     }
 }
