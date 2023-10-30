@@ -17,7 +17,7 @@ import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ViewPagerAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentDetailBinding
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
-import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackBar
+import com.yusufmendes.sisterslabgraduationproject.util.storage.SharedPrefManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -36,7 +36,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailBinding.bind(view)
 
-        val cart = args.product
+        val userId = SharedPrefManager.getInstance(requireActivity()).data.userId
+
+        val cart = args.porduct
         with(binding) {
             detailScreenCategoryTv.text = cart.category
             detailScreenDescriptionTv.text = cart.description
@@ -60,7 +62,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         }
 
         binding.detailScreenAddToBagButton.setOnClickListener {
-            viewModel.addToBag(AddToCardRequest("b3sa6dj721312ssadas21d", cart.id))
+            viewModel.addToBag(AddToCardRequest(userId, cart.id))
             observeLiveData()
         }
 
@@ -105,9 +107,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
 
         imageList = ArrayList()
         with(imageList) {
-            add(args.product.imageOne)
-            add(args.product.imageThree)
-            add(args.product.imageTwo)
+            add(args.porduct.imageOne)
+            add(args.porduct.imageThree)
+            add(args.porduct.imageTwo)
         }
 
         viewPagerAdapter = ViewPagerAdapter(imageList, viewPager2)
