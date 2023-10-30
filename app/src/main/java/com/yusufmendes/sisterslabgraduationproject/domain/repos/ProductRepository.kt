@@ -8,6 +8,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
+import com.yusufmendes.sisterslabgraduationproject.model.UserResponse
 
 interface ProductRepository {
 
@@ -25,7 +26,9 @@ interface ProductRepository {
 
     suspend fun getCategoryName(): AppResult<Category>
 
-    suspend fun login(loginBody: LoginBody) : AppResult<LoginResponse>
+    suspend fun login(loginBody: LoginBody): AppResult<LoginResponse>
 
-    suspend fun register(registerBody: RegisterBody) : AppResult<CRUD>
+    suspend fun register(registerBody: RegisterBody): AppResult<CRUD>
+
+    suspend fun getUser(userId: String): AppResult<UserResponse>
 }

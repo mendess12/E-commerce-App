@@ -9,6 +9,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
+import com.yusufmendes.sisterslabgraduationproject.model.UserResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -54,4 +55,9 @@ interface ProductAPI {
     suspend fun register(
         @Body registerBody: RegisterBody
     ): AppResult<CRUD>
+
+    @GET("get_user.php")
+    suspend fun getUser(
+        @Query("userId") userId: String
+    ): AppResult<UserResponse>
 }
