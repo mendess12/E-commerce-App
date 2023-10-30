@@ -4,6 +4,7 @@ import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.Category
+import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.Product
@@ -21,6 +22,8 @@ interface ProductRepository {
     suspend fun addToBag(addToCardRequest: AddToCardRequest): AppResult<CRUD>
 
     suspend fun deleteToProductFromBag(itemId: Int): AppResult<CRUD>
+
+    suspend fun clearBag(clearBagBody: ClearBagBody) : AppResult<CRUD>
 
     suspend fun getCategory(category: String): AppResult<Product>
 

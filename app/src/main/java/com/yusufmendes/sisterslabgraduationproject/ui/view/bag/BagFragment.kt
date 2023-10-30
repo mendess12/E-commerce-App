@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.BagProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentBagBinding
+import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
 import com.yusufmendes.sisterslabgraduationproject.util.extensions.showSnackBar
 import com.yusufmendes.sisterslabgraduationproject.util.storage.SharedPrefManager
@@ -19,6 +20,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
     private lateinit var binding: FragmentBagBinding
     private val viewModel: BagViewModel by viewModels()
     private lateinit var bagProductAdapter: BagProductAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentBagBinding.bind(view)
@@ -35,7 +37,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         }
 
         binding.bagScreenToolbar.bagToolbarDeleteIv.setOnClickListener {
-            viewModel.clearBag(userId)
+            viewModel.clearBag(ClearBagBody(userId))
         }
 
         viewModel.getBagProducts(userId)
@@ -59,10 +61,11 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
                 }
             }
             clearBagLiveData.observe(viewLifecycleOwner) {
-                if (it.isSuccess()) {
+                it.doOnSuccess {
+                    bagProductAdapter.updateProductList(emptyList())
                     view?.showSnackBar("Sepet temizlendi")
-                } else {
-                    view?.showSnackBar("Sepet silinemedi")
+                }.doOnFailure {
+                    showError(it)
                 }
             }
         }

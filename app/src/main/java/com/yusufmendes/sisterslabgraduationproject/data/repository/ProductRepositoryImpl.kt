@@ -8,6 +8,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
 import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
+import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
@@ -30,6 +31,9 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
 
     override suspend fun deleteToProductFromBag(itemId: Int): AppResult<CRUD> =
         productAPI.deleteProductFromBag(DeleteCartRequest(itemId))
+
+    override suspend fun clearBag(clearBagBody: ClearBagBody): AppResult<CRUD> =
+        productAPI.clearBag(clearBagBody)
 
     override suspend fun getCategory(category: String): AppResult<Product> =
         productAPI.getCategory(category)

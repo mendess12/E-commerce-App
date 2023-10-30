@@ -9,6 +9,7 @@ import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.ClearBagU
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.DeleteToProductFromBagUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
+import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,31 +25,27 @@ class BagViewModel @Inject constructor(
 
     var bagLiveData = MutableLiveData<AppResult<Product>>()
     val deleteLiveData = MutableLiveData<AppResult<CRUD>>()
-    var clearBagLiveData = MutableLiveData<AppResult<Unit>>()
+    var clearBagLiveData = MutableLiveData<AppResult<CRUD>>()
 
     fun getBagProducts(userId: String) {
         viewModelScope.launch {
             val result = getBagProductUseCase(BagParams(userId))
             bagLiveData.postValue(result)
-
         }
     }
 
     fun deleteProduct(itemId: Int, userId: String) {
         viewModelScope.launch {
             val result = deleteToProductFromBagUseCase(itemId)
-            deleteLiveData.postValue(result)
             getBagProducts(userId)
+            deleteLiveData.postValue(result)
         }
     }
 
-    fun clearBag(userId: String) {
-        val itemsInCart: AppResult<Product> = bagLiveData.value ?: return
-        /* viewModelScope.launch {
-             val result = clearBagUseCase(itemsInCart.get().products).doOnSuccess {
-                 getBagProducts(userId)
-             }
-             clearBagLiveData.postValue(result)
-         }*/
+    fun clearBag(clearBagBody: ClearBagBody) {
+        viewModelScope.launch {
+            val result = clearBagUseCase(clearBagBody)
+            clearBagLiveData.postValue(result)
+        }
     }
 }

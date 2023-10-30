@@ -4,6 +4,7 @@ import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.model.AddToCardRequest
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.Category
+import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
@@ -62,4 +63,9 @@ interface ProductAPI {
     suspend fun getUser(
         @Query("userId") userId: String
     ): AppResult<UserResponse>
+
+    @POST("clear_cart.php")
+    suspend fun clearBag(
+        @Body clearBagBody: ClearBagBody
+    ) : AppResult<CRUD>
 }
