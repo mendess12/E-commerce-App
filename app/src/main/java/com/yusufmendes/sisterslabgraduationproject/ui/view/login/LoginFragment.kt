@@ -9,7 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentLoginBinding
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
+import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
+import com.yusufmendes.sisterslabgraduationproject.util.storage.SharedPrefManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +23,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLoginBinding.bind(view)
+
+        if (SharedPrefManager.getInstance(requireActivity()).data.userId.isNotEmpty()) {
+            findNavController().navigate(R.id.action_loginFragment_to_nav_graph)
+        }
 
         with(binding) {
             loginScreenLoginButton.setOnClickListener {
@@ -40,6 +46,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun observeLiveData() {
         viewModel.loginLiveData.observe(viewLifecycleOwner) {
             it.doOnSuccess {
+                val userId = it.userId
+                val message = it.message
+                val status = it.status
+                SharedPrefManager.getInstance(requireActivity())
+                    .saveUser(LoginResponse(message, status, userId))
                 findNavController().navigate(R.id.action_loginFragment_to_nav_graph)
             }.doOnFailure {
                 showError(it)
@@ -79,5 +90,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun showError(error: Throwable) {
         showSnackBar(error.message ?: "Unexpected error")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (SharedPrefManager.getInstance(requireActivity()).isLoggedIn) {
+            findNavController().navigate(R.id.action_loginFragment_to_nav_graph)
+        }
     }
 }
