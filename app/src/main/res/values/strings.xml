@@ -25,4 +25,7 @@
     <string name="profile">Profile</string>
     <string name="home_address">Address</string>
     <string name="update">Update</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="total_price">Total Price: 0.0₺</string>
 </resources>

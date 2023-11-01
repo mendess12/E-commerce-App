@@ -11,6 +11,7 @@ import com.yusufmendes.sisterslabgraduationproject.domain.usecases.bag.GetBagPro
 import com.yusufmendes.sisterslabgraduationproject.model.CRUD
 import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.Product
+import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -47,5 +48,17 @@ class BagViewModel @Inject constructor(
             val result = clearBagUseCase(clearBagBody)
             clearBagLiveData.postValue(result)
         }
+    }
+
+    fun totalPrice(bagProductList: List<ProductX>): Double {
+        var totalPrice = 0.0
+        for (i in bagProductList.indices) {
+            totalPrice += if (!bagProductList[i].saleState) {
+                bagProductList[i].price
+            } else {
+                bagProductList[i].salePrice
+            }
+        }
+        return totalPrice
     }
 }

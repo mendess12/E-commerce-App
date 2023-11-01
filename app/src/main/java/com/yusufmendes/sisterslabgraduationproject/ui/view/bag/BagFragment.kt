@@ -49,6 +49,8 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
             bagLiveData.observe(viewLifecycleOwner) {
                 it.doOnSuccess {
                     it.products?.let { it1 -> bagProductAdapter.updateProductList(it1) }
+                    val totalPrice = it.products?.let { it1 -> viewModel.totalPrice(it1) }
+                    binding.bagScreenTotalPrice.text = "Total Price: ${totalPrice}₺"
                 }.doOnFailure {
                     showError(it)
                 }
