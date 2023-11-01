@@ -22,6 +22,10 @@
         <action
             android:id="@+id/action_bagFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <argument
+            android:name="payment"
+            app:argType="integer"
+            android:defaultValue="0"/>
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -42,5 +46,9 @@
         android:id="@+id/paymentFragment"
         android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.payment.PaymentFragment"
         android:label="fragment_payment"
-        tools:layout="@layout/fragment_payment" />
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_bagFragment"
+            app:destination="@id/bagFragment" />
+    </fragment>
 </navigation>
