@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.loginFragment,
                 R.id.registerFragment,
+                R.id.paymentFragment,
                 R.id.detailFragment -> {
                     binding.bottomNavigationView.visibility = View.GONE
                 }

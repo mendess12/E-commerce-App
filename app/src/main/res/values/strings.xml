@@ -27,5 +27,12 @@
     <string name="update">Update</string>
     <string name="sign_out">Sign Out</string>
     <string name="buy_now">Buy Now</string>
+    <string name="cart_number">Cart Number</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="cvv">Cvv</string>
+    <string name="pay_now">Pay Now</string>
+    <string name="payment">Payment</string>
+    <string name="credit_card">Credit Card</string>
     <string name="total_price">Total Price: 0.0₺</string>
 </resources>

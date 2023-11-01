@@ -18,7 +18,11 @@
         android:id="@+id/bagFragment"
         android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.bag.BagFragment"
         android:label="fragment_bag"
-        tools:layout="@layout/fragment_bag" />
+        tools:layout="@layout/fragment_bag" >
+        <action
+            android:id="@+id/action_bagFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.detail.DetailFragment"
@@ -34,4 +38,9 @@
         android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.payment.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
 </navigation>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.BagProductAdapter
@@ -38,6 +39,10 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
 
         binding.bagScreenToolbar.bagToolbarDeleteIv.setOnClickListener {
             viewModel.clearBag(ClearBagBody(userId))
+        }
+
+        binding.bagScreenBuyButton.setOnClickListener {
+            findNavController().navigate(R.id.action_bagFragment_to_paymentFragment)
         }
 
         viewModel.getBagProducts(userId)
