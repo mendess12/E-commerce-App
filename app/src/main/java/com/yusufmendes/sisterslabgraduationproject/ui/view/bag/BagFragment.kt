@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.BagProductAdapter
@@ -21,6 +22,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
     private lateinit var binding: FragmentBagBinding
     private val viewModel: BagViewModel by viewModels()
     private lateinit var bagProductAdapter: BagProductAdapter
+    private val args: BagFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,6 +41,7 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
 
         binding.bagScreenToolbar.bagToolbarDeleteIv.setOnClickListener {
             viewModel.clearBag(ClearBagBody(userId))
+            binding.bagScreenTotalPrice.setText("Total Price: 0.0₺")
         }
 
         binding.bagScreenBuyButton.setOnClickListener {
@@ -46,7 +49,15 @@ class BagFragment : Fragment(R.layout.fragment_bag) {
         }
 
         viewModel.getBagProducts(userId)
-        observeLiveData()
+
+        if (args.payment == 1) {
+            viewModel.clearBag(ClearBagBody(userId))
+            binding.bagScreenTotalPrice.setText("Total Price: 0.0₺")
+            view.showSnackBar("purchase successful")
+        }else{
+            observeLiveData()
+        }
+
     }
 
     private fun observeLiveData() {
