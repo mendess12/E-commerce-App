@@ -1,67 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
     android:layout_margin="@dimen/margin_8dp"
     android:background="@drawable/product_background">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/productItemIv"
-        android:layout_width="@dimen/width_150dp"
-        android:layout_height="@dimen/height_150dp"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:id="@+id/saleProductItemIv"
+        android:layout_width="@dimen/width_125dp"
+        android:layout_height="@dimen/height_125dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/productItemTitleTv"
+        app:layout_constraintBottom_toTopOf="@+id/saleProductItemTitleTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/productItemTitleTv"
-        style="@style/detail"
-        android:layout_width="@dimen/margin_0dp"
+        android:id="@+id/saleProductItemTitleTv"
+        style="@style/price"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_16dp"
-        android:layout_marginTop="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:text="@string/title"
-        app:layout_constraintBottom_toTopOf="@+id/productItemPriceTv"
+        app:layout_constraintBottom_toTopOf="@+id/saleProductItemPriceTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemIv" />
+        app:layout_constraintTop_toBottomOf="@+id/saleProductItemIv" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/productItemPriceTv"
+        android:id="@+id/saleProductItemPriceTv"
         style="@style/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_8dp"
         android:gravity="center"
         android:text="@string/price"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/productItemSalePriceTv"
+        app:layout_constraintEnd_toStartOf="@+id/saleProductItemSalePriceTv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemTitleTv"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/saleProductItemTitleTv" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/productItemSalePriceTv"
+        android:id="@+id/saleProductItemSalePriceTv"
         style="@style/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_8dp"
         android:gravity="center"
         android:text="@string/price"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/productItemPriceTv"
-        app:layout_constraintTop_toBottomOf="@+id/productItemTitleTv" />
+        app:layout_constraintStart_toEndOf="@+id/saleProductItemPriceTv"
+        app:layout_constraintTop_toBottomOf="@+id/saleProductItemTitleTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
