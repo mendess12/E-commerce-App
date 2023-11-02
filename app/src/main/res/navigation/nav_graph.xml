@@ -51,4 +51,9 @@
             android:id="@+id/action_paymentFragment_to_bagFragment"
             app:destination="@id/bagFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.yusufmendes.sisterslabgraduationproject.ui.view.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

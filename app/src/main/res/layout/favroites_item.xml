@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_8dp"
+    android:background="@drawable/bag_background">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/favoriteItemIv"
+        android:layout_width="@dimen/width_125dp"
+        android:layout_height="@dimen/height_125dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/favoriteItemDeleteIv"
+        android:layout_width="@dimen/width_32dp"
+        android:layout_height="@dimen/height_32dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_delete_24" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/favoriteItemTitleTv"
+        style="@style/head_bag"
+        android:layout_width="@dimen/margin_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:text="@string/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/favoriteItemIv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/favoriteItemPriceTv"
+        style="@style/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/favoriteItemSalePriceTv"
+        app:layout_constraintStart_toEndOf="@+id/favoriteItemIv"
+        app:layout_constraintTop_toBottomOf="@+id/favoriteItemTitleTv"
+        tools:text="@string/price" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/favoriteItemSalePriceTv"
+        style="@style/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/favoriteItemPriceTv"
+        app:layout_constraintTop_toBottomOf="@+id/favoriteItemTitleTv"
+        tools:text="" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/productItemAddFavoriteIv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:src="@drawable/baseline_favorite_border_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productItemTitleTv"
         style="@style/detail"
@@ -47,8 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/productItemSalePriceTv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productItemTitleTv"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/productItemTitleTv" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/productItemSalePriceTv"

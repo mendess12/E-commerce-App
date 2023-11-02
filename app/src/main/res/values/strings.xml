@@ -35,4 +35,7 @@
     <string name="payment">Payment</string>
     <string name="credit_card">Credit Card</string>
     <string name="total_price">Total Price: 0.0₺</string>
+    <string name="favorite">Favorites</string>
+    <string name="favorite_message">Favorites list empty</string>
+
 </resources>
