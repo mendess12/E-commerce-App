@@ -17,13 +17,15 @@ interface ProductRepository {
 
     suspend fun getBagProducts(userId: String): AppResult<Product>
 
+    suspend fun getSaleProduct(): AppResult<Product>
+
     suspend fun searchProduct(query: String): AppResult<Product>
 
     suspend fun addToBag(addToCardRequest: AddToCardRequest): AppResult<CRUD>
 
     suspend fun deleteToProductFromBag(itemId: Int): AppResult<CRUD>
 
-    suspend fun clearBag(clearBagBody: ClearBagBody) : AppResult<CRUD>
+    suspend fun clearBag(clearBagBody: ClearBagBody): AppResult<CRUD>
 
     suspend fun getCategory(category: String): AppResult<Product>
 

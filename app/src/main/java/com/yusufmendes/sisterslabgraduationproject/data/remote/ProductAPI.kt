@@ -26,6 +26,9 @@ interface ProductAPI {
         @Query("userId") userId: String
     ): AppResult<Product>
 
+    @GET("get_sale_products.php")
+    suspend fun getSaleProductData(): AppResult<Product>
+
     @GET("search_product.php")
     suspend fun searchProduct(
         @Query("query") query: String
@@ -67,5 +70,5 @@ interface ProductAPI {
     @POST("clear_cart.php")
     suspend fun clearBag(
         @Body clearBagBody: ClearBagBody
-    ) : AppResult<CRUD>
+    ): AppResult<CRUD>
 }

@@ -23,6 +23,8 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
     override suspend fun getBagProducts(userId: String): AppResult<Product> =
         productAPI.getBagProductsData(userId)
 
+    override suspend fun getSaleProduct(): AppResult<Product> = productAPI.getSaleProductData()
+
     override suspend fun searchProduct(query: String): AppResult<Product> =
         productAPI.searchProduct(query)
 

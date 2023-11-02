@@ -9,6 +9,7 @@ import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.Category
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetCategoryNameUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetCategoryUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetProductUseCase
+import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetSaleProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductParams
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.Category
@@ -20,13 +21,15 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
     private val getProductUseCase: GetProductUseCase,
+    private val getSaleProductUseCase: GetSaleProductUseCase,
     private val searchProductUseCase: SearchProductUseCase,
     private val categoryUseCase: GetCategoryUseCase,
-    private val categoryNameUseCase: GetCategoryNameUseCase
+    private val categoryNameUseCase: GetCategoryNameUseCase,
 ) :
     ViewModel() {
 
     val productLiveData = MutableLiveData<AppResult<Product>>()
+    val saleProductLiveData = MutableLiveData<AppResult<Product>>()
     val searchProductLiveData = MutableLiveData<AppResult<Product>>()
     val categoryProductLiveData = MutableLiveData<AppResult<Product>>()
     val categoryNameLiveData = MutableLiveData<AppResult<Category>>()
@@ -35,11 +38,18 @@ class HomeFragmentViewModel @Inject constructor(
         getProducts()
     }
 
-    fun getProducts() {
+    private fun getProducts() {
         Log.e("HomeFragment", "getProducts")
         viewModelScope.launch {
             val result = getProductUseCase(Unit)
             productLiveData.postValue(result)
+        }
+    }
+
+    fun getSaleProducts() {
+        viewModelScope.launch {
+            val result = getSaleProductUseCase(Unit)
+            saleProductLiveData.postValue(result)
         }
     }
 

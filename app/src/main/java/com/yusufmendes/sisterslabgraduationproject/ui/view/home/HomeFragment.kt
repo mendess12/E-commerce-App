@@ -13,6 +13,7 @@ import com.yusufmendes.sisterslabgraduationproject.ui.adapter.CategoryNameAdapte
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentHomeBinding
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
+import com.yusufmendes.sisterslabgraduationproject.ui.adapter.SaleProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var productAdapter: ProductAdapter
+    private lateinit var saleProductAdapter: SaleProductAdapter
     private lateinit var categoryNameAdapter: CategoryNameAdapter
     private val viewModel: HomeFragmentViewModel by viewModels()
 
@@ -36,6 +38,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             homeRv.adapter = productAdapter
         }
 
+        saleProductAdapter = SaleProductAdapter()
+        with(binding) {
+            saleProductRv.setHasFixedSize(true)
+            saleProductRv.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            saleProductRv.adapter = saleProductAdapter
+        }
+
         categoryNameAdapter = CategoryNameAdapter(::getCategoryName)
         with(binding) {
             categoryRv.setHasFixedSize(true)
@@ -44,6 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             categoryRv.adapter = categoryNameAdapter
         }
 
+        viewModel.getSaleProducts()
         viewModel.getCategoryName()
         search()
         observeLiveData()
@@ -63,6 +74,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             productLiveData.observe(viewLifecycleOwner) {
                 it.doOnSuccess {
                     it.products?.let { it1 -> productAdapter.updateProductList(it1) }
+                }.doOnFailure {
+                    showError(it)
+                }
+            }
+            viewModel.saleProductLiveData.observe(viewLifecycleOwner) {
+                it.doOnSuccess {
+                    it.products?.let { it1 -> saleProductAdapter.updateProductList(it1) }
                 }.doOnFailure {
                     showError(it)
                 }
