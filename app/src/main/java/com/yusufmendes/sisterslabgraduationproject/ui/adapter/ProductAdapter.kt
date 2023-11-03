@@ -6,11 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.databinding.ProductItemBinding
+import com.yusufmendes.sisterslabgraduationproject.model.ProductEntity
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.util.downloadFromUrl
 
 class ProductAdapter(
-    private val onClick: (ProductX) -> Unit
+    private val onClick: (ProductX) -> Unit,
+    private val favOnClick: (ProductEntity) -> Unit
 ) :
     RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -38,6 +40,18 @@ class ProductAdapter(
                 }
                 itemView.setOnClickListener {
                     onClick.invoke(product)
+                }
+                productItemAddFavoriteIv.setOnClickListener {
+                    favOnClick.invoke(
+                        ProductEntity(
+                            product.id,
+                            product.imageOne,
+                            product.price,
+                            product.salePrice,
+                            product.saleState,
+                            product.title
+                        )
+                    )
                 }
             }
         }

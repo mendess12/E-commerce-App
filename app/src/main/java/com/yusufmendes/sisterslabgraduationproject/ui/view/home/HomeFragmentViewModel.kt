@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
+import com.yusufmendes.sisterslabgraduationproject.domain.usecases.favoirte.AddFavoriteProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.CategoryProductParams
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetCategoryNameUseCase
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.GetCategoryUseCase
@@ -14,6 +15,7 @@ import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchPr
 import com.yusufmendes.sisterslabgraduationproject.domain.usecases.home.SearchProductUseCase
 import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.Product
+import com.yusufmendes.sisterslabgraduationproject.model.ProductEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,8 +27,8 @@ class HomeFragmentViewModel @Inject constructor(
     private val searchProductUseCase: SearchProductUseCase,
     private val categoryUseCase: GetCategoryUseCase,
     private val categoryNameUseCase: GetCategoryNameUseCase,
-) :
-    ViewModel() {
+    private val addFavoriteProductUseCase: AddFavoriteProductUseCase
+) : ViewModel() {
 
     val productLiveData = MutableLiveData<AppResult<Product>>()
     val saleProductLiveData = MutableLiveData<AppResult<Product>>()
@@ -43,6 +45,13 @@ class HomeFragmentViewModel @Inject constructor(
         viewModelScope.launch {
             val result = getProductUseCase(Unit)
             productLiveData.postValue(result)
+        }
+    }
+
+    fun addFavoriteProduct(productEntity: ProductEntity) {
+        viewModelScope.launch {
+            addFavoriteProductUseCase(productEntity)
+
         }
     }
 

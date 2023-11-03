@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.databinding.FavoritesItemBinding
-import com.yusufmendes.sisterslabgraduationproject.model.ProductX
+import com.yusufmendes.sisterslabgraduationproject.model.ProductEntity
 import com.yusufmendes.sisterslabgraduationproject.util.downloadFromUrl
 
 class FavoriteAdapter(
-    private val onClick: (Int) -> Unit
+    private val onClick: (ProductEntity) -> Unit
 ) : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
 
-    private val favoriteProductList = ArrayList<ProductX>()
+    private val favoriteProductList = ArrayList<ProductEntity>()
 
     inner class FavoriteViewHolder(private val binding: FavoritesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(favoriteProduct: ProductX) {
+        fun bind(favoriteProduct: ProductEntity) {
             with(binding) {
                 favoriteItemTitleTv.text = favoriteProduct.title
                 favoriteItemPriceTv.text =
@@ -36,7 +36,7 @@ class FavoriteAdapter(
                     favoriteItemPriceTv.background = null
                 }
                 favoriteItemDeleteIv.setOnClickListener {
-                    onClick.invoke(favoriteProduct.id)
+                    onClick.invoke(favoriteProduct)
                 }
             }
         }
@@ -55,7 +55,7 @@ class FavoriteAdapter(
         holder.bind(favoriteProduct)
     }
 
-    fun updateList(updateFavoriteProductList: List<ProductX>) {
+    fun updateList(updateFavoriteProductList: List<ProductEntity>) {
         favoriteProductList.clear()
         favoriteProductList.addAll(updateFavoriteProductList)
         notifyDataSetChanged()

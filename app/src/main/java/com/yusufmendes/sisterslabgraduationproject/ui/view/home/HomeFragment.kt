@@ -12,6 +12,7 @@ import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.CategoryNameAdapter
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.ProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentHomeBinding
+import com.yusufmendes.sisterslabgraduationproject.model.ProductEntity
 import com.yusufmendes.sisterslabgraduationproject.model.ProductX
 import com.yusufmendes.sisterslabgraduationproject.ui.adapter.SaleProductAdapter
 import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
@@ -30,7 +31,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        productAdapter = ProductAdapter(::navigateToDetail)
+        productAdapter = ProductAdapter(::navigateToDetail, ::onFavClick)
         with(binding) {
             homeRv.setHasFixedSize(true)
             homeRv.layoutManager =
@@ -67,6 +68,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun navigateToDetail(product: ProductX) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(product)
         findNavController().navigate(action)
+    }
+
+    private fun onFavClick(productEntity: ProductEntity) {
+        viewModel.addFavoriteProduct(productEntity)
     }
 
     private fun observeLiveData() {

@@ -7,16 +7,20 @@ import com.yusufmendes.sisterslabgraduationproject.model.Category
 import com.yusufmendes.sisterslabgraduationproject.model.DeleteCartRequest
 import com.yusufmendes.sisterslabgraduationproject.model.Product
 import com.yusufmendes.sisterslabgraduationproject.data.remote.ProductAPI
+import com.yusufmendes.sisterslabgraduationproject.data.local.ProductDao
 import com.yusufmendes.sisterslabgraduationproject.domain.AppResult
 import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
+import com.yusufmendes.sisterslabgraduationproject.model.ProductEntity
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
 import com.yusufmendes.sisterslabgraduationproject.model.UserResponse
 import javax.inject.Inject
 
-class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductAPI) :
-    ProductRepository {
+class ProductRepositoryImpl @Inject constructor(
+    private val productAPI: ProductAPI,
+    private val productDao: ProductDao
+) : ProductRepository {
 
     override suspend fun getProducts(): AppResult<Product> = productAPI.getProductData()
 
@@ -41,6 +45,14 @@ class ProductRepositoryImpl @Inject constructor(private val productAPI: ProductA
         productAPI.getCategory(category)
 
     override suspend fun getCategoryName(): AppResult<Category> = productAPI.getCategoryName()
+    override suspend fun addToFavorite(productEntity: ProductEntity) =
+        productDao.addFavoriteProduct(productEntity)
+
+    override suspend fun deleteFromFavorites(productEntity: ProductEntity) =
+        productDao.deleteFavoriteProduct(productEntity)
+
+    override suspend fun getFavoriteProducts(): List<ProductEntity> =
+        productDao.getFavoriteProduct()
 
     override suspend fun login(loginBody: LoginBody): AppResult<LoginResponse> =
         productAPI.login(loginBody)

@@ -8,6 +8,7 @@ import com.yusufmendes.sisterslabgraduationproject.model.ClearBagBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginBody
 import com.yusufmendes.sisterslabgraduationproject.model.LoginResponse
 import com.yusufmendes.sisterslabgraduationproject.model.Product
+import com.yusufmendes.sisterslabgraduationproject.model.ProductEntity
 import com.yusufmendes.sisterslabgraduationproject.model.RegisterBody
 import com.yusufmendes.sisterslabgraduationproject.model.UserResponse
 
@@ -30,6 +31,12 @@ interface ProductRepository {
     suspend fun getCategory(category: String): AppResult<Product>
 
     suspend fun getCategoryName(): AppResult<Category>
+
+    suspend fun addToFavorite(productEntity: ProductEntity)
+
+    suspend fun deleteFromFavorites(productEntity: ProductEntity)
+
+    suspend fun getFavoriteProducts(): List<ProductEntity>
 
     suspend fun login(loginBody: LoginBody): AppResult<LoginResponse>
 
