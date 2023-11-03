@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.view.favorite.FavoriteFragment">
 
+    <include
+        android:id="@+id/favoriteScreenToolbar"
+        layout="@layout/bag_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriteRv"
@@ -14,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favoriteScreenToolbar"
         tools:listitem="@layout/favorites_item" />
 
     <TextView
