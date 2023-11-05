@@ -11,10 +11,24 @@
         android:id="@+id/profileIv"
         android:layout_width="@dimen/width_150dp"
         android:layout_height="@dimen/height_150dp"
-        android:layout_marginTop="@dimen/margin_32dp"
+        android:layout_marginTop="@dimen/margin_64dp"
         android:src="@drawable/baseline_account_box_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/profileSignOutButton"
+        style="@style/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_8dp"
+        android:backgroundTint="@color/text_color"
+        android:drawableLeft="@drawable/baseline_logout_24"
+        android:text="@string/sign_out"
+        android:textColor="@color/screen_background"
+        app:cornerRadius="@dimen/radius_16dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -38,8 +52,8 @@
         android:layout_marginStart="@dimen/margin_32dp"
         android:layout_marginTop="@dimen/margin_32dp"
         android:layout_marginEnd="@dimen/margin_32dp"
-        android:text="@string/name"
         android:background="@drawable/edit_text_background"
+        android:hint="@string/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileUserEmail" />
@@ -52,8 +66,8 @@
         android:layout_marginStart="@dimen/margin_32dp"
         android:layout_marginTop="@dimen/margin_32dp"
         android:layout_marginEnd="@dimen/margin_32dp"
-        android:text="@string/phone"
         android:background="@drawable/edit_text_background"
+        android:hint="@string/phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileUserName" />
@@ -66,8 +80,8 @@
         android:layout_marginStart="@dimen/margin_32dp"
         android:layout_marginTop="@dimen/margin_32dp"
         android:layout_marginEnd="@dimen/margin_32dp"
-        android:text="@string/home_address"
         android:background="@drawable/edit_text_background"
+        android:hint="@string/home_address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileUserPhone" />

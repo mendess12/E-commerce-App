@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.yusufmendes.sisterslabgraduationproject.R
 import com.yusufmendes.sisterslabgraduationproject.databinding.FragmentProfileBinding
 import com.yusufmendes.sisterslabgraduationproject.ui.util.showSnackBar
@@ -22,6 +23,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val userId = SharedPrefManager.getInstance(requireActivity()).data.userId
         viewModel.getUser(userId)
         observeLiveData()
+
+        binding.profileSignOutButton.setOnClickListener {
+            SharedPrefManager.getInstance(requireActivity()).clear()
+            findNavController().navigate(R.id.auth_nav_graph)
+        }
     }
 
     private fun observeLiveData() {
